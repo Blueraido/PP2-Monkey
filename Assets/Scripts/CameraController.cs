@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            rotX -= mouseX;
+            rotX -= mouseY;
         }
         //clamp the rotX on the x axis
 
