@@ -228,9 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sens: 600
-  fov: -90
-  lockVertMin: 90
-  lockVertMax: 0
+  lockVertMin: -90
+  lockVertMax: 90
   invertY: 0
 --- !u!1001 &127191183
 PrefabInstance:
