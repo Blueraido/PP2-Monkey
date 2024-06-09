@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] int sens;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
+    [SerializeField] float FOV = Camera.main.fieldOfView;
 
     float rotX;
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class CameraController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Camera.main.fieldOfView = FOV;
     }
 
     // Update is called once per frame
