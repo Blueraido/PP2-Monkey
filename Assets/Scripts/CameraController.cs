@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] int sens;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
-    [SerializeField] float FOV = Camera.main.fieldOfView;
+    [SerializeField] float FOV;
 
     float rotX;
     // Start is called before the first frame update
