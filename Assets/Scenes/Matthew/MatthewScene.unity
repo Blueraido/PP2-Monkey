@@ -231,6 +231,7 @@ MonoBehaviour:
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
+  FOV: 100
 --- !u!1001 &127191183
 PrefabInstance:
   m_ObjectHideFlags: 0
