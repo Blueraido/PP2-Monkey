@@ -281,9 +281,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 558471899399029707, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: sprintMod
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3746668595919268255, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4225700045627406512, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
       propertyPath: m_Name
       value: Temp Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398081448237340482, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: FOV
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398081448237340482, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: sens
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398081448237340482, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: lockVertMax
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398081448237340482, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: lockVertMin
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7350625711199479089, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
       propertyPath: m_LocalPosition.x
@@ -324,6 +348,10 @@ PrefabInstance:
     - target: {fileID: 7350625711199479089, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806430371670903334, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

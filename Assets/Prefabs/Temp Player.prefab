@@ -49,6 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7104feaa42df11045b742a7a34a3dce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 4548480375749661810}
+  speed: 8
+  sprintmod: 3
+  numOfJumps: 3
+  jumpSpeed: 8
+  gravity: 22
+  staminaDrainRate: 0
+  stamina: 0
 --- !u!143 &4548480375749661810
 CharacterController:
   m_ObjectHideFlags: 0
@@ -198,6 +206,7 @@ MonoBehaviour:
   lockVertMin: 0
   lockVertMax: 0
   invertY: 0
+  FOV: 0
 --- !u!20 &3746668595919268255
 Camera:
   m_ObjectHideFlags: 0
