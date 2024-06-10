@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
+    [SerializeField] int HP;
     [SerializeField] float speed;
     [SerializeField] float sprintMod;
     [SerializeField] int numOfJumps;
@@ -15,6 +16,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float staminaDrainRate;
     [SerializeField] int stamina;
 
+    [SerializeField] int shootDamage;
+    [SerializeField] float shootSpeed;
+    [SerializeField] int shootDistance;
+
+    [SerializeField]  GameObject projectile;
+    bool isShooting;
+    int HpOriginal;
     int jumpCount;
     Vector3 moveDirection;
     Vector3 playerVelocity;
@@ -28,8 +36,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HpOriginal = HP;
         movement();
         sprint();
+        if (Input.GetButton("Fire1") && !isShooting)
+            StartCoroutine(shoot());
     }
 
     void movement()
@@ -59,6 +70,23 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetButtonUp("Sprint"))
         {
             speed /= sprintMod;
+        }
+    }
+    IEnumerator shoot()
+    {
+        isShooting = true;
+        Instantiate(projectile, Camera.main.transform.position, Camera.main.transform.rotation);
+        yield return new WaitForSeconds(shootSpeed);
+        isShooting = false;
+    }
+
+    public void takeDamage(int amount)
+    {
+        HP-=amount;
+        //updatePlayerUI();
+        if(HP < 0)
+        {
+            //gameManager.instance.youLose();
         }
     }
 }
