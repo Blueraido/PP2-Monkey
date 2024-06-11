@@ -163,11 +163,8 @@ IEnumerator flashDamage()
 IEnumerator attack()
 {
     isAttacking = true;
-
     Instantiate(projectile, attackPostion.position, transform.rotation);
-
     yield return new WaitForSeconds(attackInterval);
-
     isAttacking = false;
 }
 }
