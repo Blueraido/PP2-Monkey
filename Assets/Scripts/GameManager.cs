@@ -7,7 +7,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     // Obtain player references
-    GameManager instance;
+    public static GameManager instance;
     public GameObject player;
 
     // Player script reference:
@@ -49,6 +49,24 @@ public class GameManager : MonoBehaviour
 
             else { } // Do nothing if other assumed menu is on screen (only pause should be esc out of)
         }
+    }
+
+    public void statePause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public void stateUnPause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        menuActive.SetActive(isPaused);
+        menuActive = null;
     }
 
     public void menuProcess(GameObject menu = null)

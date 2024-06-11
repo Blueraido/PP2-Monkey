@@ -5,15 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class ButtonProcessing : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Resume()
     {
-        
+        GameManager.instance.stateUnPause(); 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Restart()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.instance.stateUnPause();
+         
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
