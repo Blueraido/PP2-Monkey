@@ -50,21 +50,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4548480375749661810}
-  HP: 0
-  speed: 8
-  sprintMod: 0
+  HP: 10
+  speed: 5
+  sprintMod: 2
   numOfJumps: 3
-  jumpSpeed: 8
-  gravity: 22
-  sprintCost: 0
-  jumpCost: 0
-  staminaRegenRate: 0
-  staminaRegenDelay: 0
-  stamina: 0
-  shootDamage: 0
-  shootSpeed: 0
-  shootDistance: 0
-  projectile: {fileID: 0}
+  jumpSpeed: 10
+  gravity: 25
+  sprintCost: 1
+  jumpCost: 1
+  staminaRegenRate: 1
+  staminaRegenDelay: 1
+  stamina: 1
+  shootDamage: 1
+  shootSpeed: 1
+  shootDistance: 1
+  projectile: {fileID: 3920310190469411937, guid: c80d2c60d4a9f974ca22ebd021dca9d2, type: 3}
 --- !u!143 &4548480375749661810
 CharacterController:
   m_ObjectHideFlags: 0
