@@ -254,7 +254,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5840532951934407440}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84899430711367508}
+        m_TargetAssemblyTypeName: ButtonProcessing, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &252139784214077968
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +466,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5388409484518659494}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84899430711367508}
+        m_TargetAssemblyTypeName: ButtonProcessing, Assembly-CSharp
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &495753154151002318
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +677,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3406180207264977110}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84899430711367508}
+        m_TargetAssemblyTypeName: ButtonProcessing, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1084404876387005597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,7 +1095,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 524910472560684826}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84899430711367508}
+        m_TargetAssemblyTypeName: ButtonProcessing, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2485377715752009275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,7 +1228,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 18322033011573726}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84899430711367508}
+        m_TargetAssemblyTypeName: ButtonProcessing, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2753874770384306198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1437,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6244249621022152622}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84899430711367508}
+        m_TargetAssemblyTypeName: ButtonProcessing, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3245926277727818245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2976,4 +3048,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 117086253395880331}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84899430711367508}
+        m_TargetAssemblyTypeName: ButtonProcessing, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
