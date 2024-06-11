@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void updateLose(int amount) // Lose menu processing
+    public void updateLose() // Lose menu processing
     { 
         menuProcess(menuLose);
     }
