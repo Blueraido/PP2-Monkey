@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
+    [SerializeField] GameObject hitEffect;
 
 
     // Start is called before the first frame update
@@ -23,15 +24,22 @@ public class Projectile : MonoBehaviour
     {
         
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        IDamage dmg = other.GetComponent<IDamage>();
+        IDamage dmg = collision.gameObject.GetComponent<IDamage>();
         if (dmg != null)
         {
             dmg.takeDamage(damage);
         }
-
+        hitFanfare();
         Destroy(gameObject);
+
     }
+
+    void hitFanfare()
+    {
+        Instantiate(hitEffect, transform.position, transform.rotation);
+
+    }
+
 }
