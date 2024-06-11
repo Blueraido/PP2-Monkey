@@ -744,9 +744,9 @@ MonoBehaviour:
   playerHPBar: {fileID: 0}
   playerStaminaBar: {fileID: 0}
   menuActive: {fileID: 0}
-  menuPause: {fileID: 0}
-  menuWin: {fileID: 0}
-  menuLose: {fileID: 0}
+  menuPause: {fileID: 252139784214077968}
+  menuWin: {fileID: 495753154151002318}
+  menuLose: {fileID: 1477901282287481110}
   enemyCountText: {fileID: 0}
   splatCountText: {fileID: 0}
 --- !u!114 &84899430711367508
