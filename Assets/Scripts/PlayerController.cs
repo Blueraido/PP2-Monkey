@@ -13,8 +13,13 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int numOfJumps;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
-    [SerializeField] float staminaDrainRate;
+    [SerializeField] int sprintCost; //Stamina cost for Sprinting
+    [SerializeField] int jumpCost; //Stamina cost for jumping
+    [SerializeField] int staminaRegenRate; //How many stamina points are regenerated per tick
+    [SerializeField] float staminaRegenDelay; //Delay before stamina starts regenerating
     [SerializeField] int stamina;
+    int staminaOrig;
+    WaitForSeconds regenSpeed = new WaitForSeconds(1); //Used to set how fast stamina regenerates
 
     [SerializeField] int shootDamage;
     [SerializeField] float shootSpeed;
@@ -30,7 +35,7 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        
+        staminaOrig = stamina;
     }
 
     // Update is called once per frame
@@ -52,10 +57,11 @@ public class PlayerController : MonoBehaviour, IDamage
         }
         moveDirection = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDirection * speed * Time.deltaTime);
-        if(Input.GetButtonDown("Jump") && jumpCount < numOfJumps)
+        if(Input.GetButtonDown("Jump") && jumpCount < numOfJumps && stamina > 0)
         {
             jumpCount++;
             playerVelocity.y = jumpSpeed;
+            useStamina(jumpCost);
         }
         playerVelocity.y -= gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -63,9 +69,10 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void sprint()
     {
-        if(Input.GetButtonDown("Sprint"))
+        if(Input.GetButtonDown("Sprint") && stamina > 0)
         {
             speed *= sprintMod;
+            useStamina(sprintCost);
         }
         else if (Input.GetButtonUp("Sprint"))
         {
@@ -87,6 +94,28 @@ public class PlayerController : MonoBehaviour, IDamage
         if(HP < 0)
         {
             //gameManager.instance.youLose();
+        }
+    }
+
+    void useStamina(int amount)
+    {
+        if(staminaOrig - stamina > 0)
+        {
+            stamina -= amount;
+            //Code for stamina bar when I can access the game manager
+            StartCoroutine(regenStamina());
+        }
+    }
+
+    IEnumerator regenStamina()
+    {
+        yield return new WaitForSeconds(staminaRegenDelay);
+
+        while(stamina < staminaOrig)
+        {
+            stamina += staminaRegenRate;
+            //Code for stamina bar when I can access the game manager
+            yield return regenSpeed;
         }
     }
 }
