@@ -10,31 +10,31 @@ public class GameManager : MonoBehaviour
     GameManager instance;
     public GameObject player;
 
-    // Replace this with whatever player controller winds up being:
-    // public PlayerController playerScript;
+    // Player script reference:
+    public PlayerController playerScript;
 
     // Hud element processing
     public Image playerHPBar;
     public Image playerStaminaBar;
 
     // Pause menu processing
-    public bool isPaused;
+    bool isPaused;
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
 
     // Objective text ui processing
-    [SerializeField] TMP_Text enemyCount;
-    [SerializeField] TMP_Text splatCount;
+    [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] TMP_Text splatCountText;
+    int enemyCount;
+    int splatCount;
 
     void Awake()
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
-
-        // Replace this with player script reference:
-        // playerScript = player.GetComponent<PlayerController>();
+        playerScript = player.GetComponent<PlayerController>();
     }
 
     void Update()
@@ -42,17 +42,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null) // Pauses the game when cancel is pressed and current active menu is null
-            {
-                Debug.Log("menuActive is null");
                 menuProcess(menuPause); // Makes current menu the pause menu
-            }
 
             else if (menuActive == menuPause) // Allows only pause menu to be escaped out of
-            {
-                Debug.Log("menuActive == menuPause works");
-                menuProcess(); // Makes current menu null, which should be default unpaused
+                menuProcess(); // Unpause is done by passing in nothing
 
-            }
+            else { } // Do nothing if other assumed menu is on screen (only pause should be esc out of)
         }
     }
 
@@ -65,7 +60,7 @@ public class GameManager : MonoBehaviour
             menuActive.SetActive(isPaused);
         }
 
-        else if (menu == null)
+        else if (menu == null) // Order of operation changes when unpausing
         {
             togglePause();
             menuActive.SetActive(isPaused);
@@ -90,5 +85,32 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+    }
+
+    public void updateGoalEnemy(int amount) // Temporary win condition based on defeat # of enemies
+    { // Use this for testing and possibly for the first demo
+        enemyCount += amount; 
+        enemyCountText.text = enemyCount.ToString("F0");
+
+        if (enemyCount <= 0)
+        {
+            menuProcess(menuWin);
+        }
+    }
+
+    public void updateGoalSplat(int amount) // Temporary win condition based on walls splattered
+    { // WIP
+        splatCount += amount;
+        splatCountText.text = splatCount.ToString("F0");
+
+        if (splatCount == 10) // Temp goal is "splatting" 10 walls
+        {
+            menuProcess(menuWin);
+        }
+    }
+
+    public void updateLose(int amount) // Lose menu processing
+    { 
+        menuProcess(menuLose);
     }
 }
