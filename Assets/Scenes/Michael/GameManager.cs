@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public Image playerStaminaBar;
 
     // Pause menu processing
-    bool isPaused;
+    public bool isPaused;
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
@@ -43,21 +43,34 @@ public class GameManager : MonoBehaviour
         {
             if (menuActive == null) // Pauses the game when cancel is pressed and current active menu is null
             {
+                Debug.Log("menuActive is null");
                 menuProcess(menuPause); // Makes current menu the pause menu
             }
 
             else if (menuActive == menuPause) // Allows only pause menu to be escaped out of
             {
-                menuProcess(null); // Makes current menu null
+                Debug.Log("menuActive == menuPause works");
+                menuProcess(); // Makes current menu null, which should be default unpaused
+
             }
         }
     }
 
-    public void menuProcess(GameObject menu)
+    public void menuProcess(GameObject menu = null)
     {
-        togglePause();
-        menuActive = menu;
-        menuActive.SetActive(isPaused);
+        if (menu != null)
+        {
+            togglePause(); // Pauses when isPaused = false, unpauses if the opposite is true
+            menuActive = menu; // Sets the active menu to parsed menu
+            menuActive.SetActive(isPaused);
+        }
+
+        else if (menu == null)
+        {
+            togglePause();
+            menuActive.SetActive(isPaused);
+            menuActive = menu;
+        }
     }
 
     public void togglePause()
@@ -69,7 +82,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
-            menuActive.SetActive(isPaused);
         }
 
         else if (!isPaused) // Unpauses scene
@@ -77,8 +89,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            menuActive.SetActive(isPaused); // activates menu based on isPaused bool
-            menuActive = null;
         }
     }
 }

@@ -3,7 +3,16 @@ guid: 49a5c0cfe2c64944185b22cef21b28ac
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {fileID: 4225700045627406512, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+  - playerHPBar: {instanceID: 0}
+  - playerStaminaBar: {instanceID: 0}
+  - menuActive: {instanceID: 0}
+  - menuPause: {instanceID: 0}
+  - menuWin: {instanceID: 0}
+  - menuLose: {instanceID: 0}
+  - enemyCount: {instanceID: 0}
+  - splatCount: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
