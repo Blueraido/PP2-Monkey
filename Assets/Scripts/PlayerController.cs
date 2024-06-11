@@ -92,9 +92,9 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         HP -= amount;
         UpdateUI();
-        if (HP < 0)
+        if (HP <= 0)
         {
-            //gameManager.instance.youLose();
+            GameManager.instance.updateLose();
         }
     }
 
