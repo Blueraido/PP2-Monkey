@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     void UpdateUI()
     {
-        GameManager.instance.playerHPBar.fillAmount = HP / HpOriginal;
+        GameManager.instance.playerHPBar.fillAmount = (float)HP / HpOriginal;
         GameManager.instance.playerStaminaBar.fillAmount = stamina / staminaOrig;
     }
 }
