@@ -210,11 +210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0739c01d48fc4f045930aa151671253b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 0
-  lockVertMin: 0
-  lockVertMax: 0
+  sens: 100
+  lockVertMin: -90
+  lockVertMax: 90
   invertY: 0
-  FOV: 0
+  FOV: 90
 --- !u!20 &3746668595919268255
 Camera:
   m_ObjectHideFlags: 0
