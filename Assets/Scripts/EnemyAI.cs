@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-
+        GameManager.instance.updateGoalEnemy(1);
     }
 
     // Update is called once per frame
@@ -79,10 +79,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        StartCoroutine(flashDamage());
 
         if (HP <= 0)
         {
-            StartCoroutine(flashDamage());
+            GameManager.instance.updateGoalEnemy(-1);
             Destroy(gameObject);
         }
     }
@@ -97,7 +98,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
             playerInSightRange = false;
-    
     }
 
 
