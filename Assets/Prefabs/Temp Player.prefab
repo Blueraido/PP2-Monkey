@@ -50,13 +50,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4548480375749661810}
-  speed: 8
-  sprintmod: 3
-  numOfJumps: 3
-  jumpSpeed: 8
+  HP: 10
+  speed: 5
+  sprintMod: 2
+  numOfJumps: 2
+  jumpSpeed: 10
   gravity: 22
-  staminaDrainRate: 0
-  stamina: 0
+  sprintCost: 1
+  jumpCost: 1
+  staminaRegenRate: 1
+  staminaRegenDelay: 1
+  stamina: 1
+  shootDamage: 1
+  shootSpeed: 1
+  shootDistance: 1
+  projectile: {fileID: 5545889760857290077, guid: c262f34a0f4ab154c8488a6c403b3e41, type: 3}
 --- !u!143 &4548480375749661810
 CharacterController:
   m_ObjectHideFlags: 0
@@ -202,11 +210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0739c01d48fc4f045930aa151671253b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 0
-  lockVertMin: 0
-  lockVertMax: 0
+  sens: 100
+  lockVertMin: -90
+  lockVertMax: 90
   invertY: 0
-  FOV: 0
+  FOV: 90
 --- !u!20 &3746668595919268255
 Camera:
   m_ObjectHideFlags: 0
