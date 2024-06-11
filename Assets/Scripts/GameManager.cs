@@ -7,7 +7,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     // Obtain player references
-    GameManager instance;
+    public static GameManager instance;
     public GameObject player;
 
     // Player script reference:

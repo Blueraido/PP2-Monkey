@@ -7,55 +7,87 @@ public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
+    [SerializeField] Transform shootPostion;
+    [SerializeField] int animTransSpeed;
 
-    [SerializeField] float sightRange;
-    [SerializeField] float attackRange;
+    [SerializeField] int sightRange;
+    [SerializeField] int attackRange;
+    [SerializeField] int faceTargetSpeed;
+    [SerializeField] int rotateTowardTarget;
     [SerializeField] float attackInterval;
+    [SerializeField] GameObject projectile;
 
     [SerializeField] int HP;
 
-    public GameObject player;
-    public LayerMask IsGround, IsPlayer;
+    bool isAttacking;
+    bool playerInSightRange;
 
+    Vector3 playerDir;
+
+#if false
     // Patrolling
     public Vector3 walkPoint;
     bool walkPointSet;
-    public float walkPointRange;
+    public float walkPointRange; 
+#endif
 
-    // Attacking
-    bool hasAttacked;
-
-    // States
-    public bool playerInSightRange, playerInAttackRange;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check for the player
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, IsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
+        // Get the direction of the player
+        playerDir = GameManager.instance.player.transform.position - transform.position;
 
+        if (playerInSightRange)
+        {
+            agent.SetDestination(GameManager.instance.player.transform.position);
+
+            if (agent.remainingDistance < agent.stoppingDistance)
+            {
+                faceTarget();
+            }
+
+            if (!isAttacking)
+            {
+                StartCoroutine(shoot());
+            }
+        }
+#if false
         if (!playerInSightRange && !playerInAttackRange)
             patrolling();
         else if (playerInSightRange && !playerInAttackRange)
             chasePlayer();
-        else if (playerInSightRange && playerInAttackRange)
-            attackPlayer();
+        /*else if (playerInSightRange && playerInAttackRange)
+            attackPlayer();*/ 
+#endif
     }
+
+    void faceTarget()
+    {
+        Quaternion rot = Quaternion.LookRotation(playerDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+    }
+
+
 
     public void takeDamage(int amount)
     {
         HP -= amount;
 
-        StartCoroutine(flashDamage());
+        if (HP <= 0)
+        {
+            StartCoroutine(flashDamage());
+            Destroy(gameObject); 
+        }
     }
 
+#if false
     void patrolling()
     {
         if (!walkPointSet)
@@ -68,10 +100,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         // When walk point is reached
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
-    }
+    } 
+
 
     void searchWalkPoint()
-    { 
+    {
         float randomZPoint = Random.Range(-walkPointRange, walkPointRange);
         float randomXPoint = Random.Range(-walkPointRange, walkPointRange);
 
@@ -87,6 +120,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         agent.SetDestination(player.transform.position);
     }
 
+
     void attackPlayer()
     {
         agent.SetDestination(transform.position);
@@ -101,13 +135,25 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void resetAttack()
     {
-
+        hasAttacked = false;
     }
+#endif
 
     IEnumerator flashDamage()
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(1.0f);
         model.material.color = Color.white;
+    }
+
+    IEnumerator shoot()
+    {
+        isAttacking = true;
+
+        Instantiate(projectile, shootPostion.position, transform.rotation);
+
+        yield return new WaitForSeconds(attackInterval);
+
+        isAttacking = false;
     }
 }
