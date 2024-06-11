@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     public PlayerController playerScript;
 
     // Hud element processing
-    public Image playerHPBar;
-    public Image playerStaminaBar;
+    [SerializeField] public Image playerHPBar;
+    [SerializeField] public Image playerStaminaBar;
 
     // Pause menu processing
     bool isPaused;
