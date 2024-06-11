@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5313454832522771986}
   m_Layer: 0
   m_Name: Temp Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,13 +50,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4548480375749661810}
+  HP: 0
   speed: 8
-  sprintmod: 3
+  sprintMod: 0
   numOfJumps: 3
   jumpSpeed: 8
   gravity: 22
-  staminaDrainRate: 0
+  sprintCost: 0
+  jumpCost: 0
+  staminaRegenRate: 0
+  staminaRegenDelay: 0
   stamina: 0
+  shootDamage: 0
+  shootSpeed: 0
+  shootDistance: 0
+  projectile: {fileID: 0}
 --- !u!143 &4548480375749661810
 CharacterController:
   m_ObjectHideFlags: 0
