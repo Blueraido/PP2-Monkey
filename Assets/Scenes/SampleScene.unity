@@ -6729,6 +6729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Temp Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4225700045627406512, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4398081448237340482, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
       propertyPath: FOV
       value: 60
@@ -8189,7 +8193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3115357695298803900, guid: 0a110e2bfbd1e3d42b7833a5b6454c65, type: 3}
       propertyPath: m_BaseOffset
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3115357695298803900, guid: 0a110e2bfbd1e3d42b7833a5b6454c65, type: 3}
       propertyPath: m_Acceleration
@@ -11086,6 +11090,7 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 504496616320409536}
   - {fileID: 128778525141451816}
   - {fileID: 1830941690}
   - {fileID: 705507995}
@@ -11212,4 +11217,3 @@ SceneRoots:
   - {fileID: 1924251858}
   - {fileID: 140394627}
   - {fileID: 198311443}
-  - {fileID: 504496616320409536}

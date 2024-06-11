@@ -83,9 +83,23 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             StartCoroutine(flashDamage());
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            playerInSightRange = true;
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            playerInSightRange = false;
+    
+    }
+
 
 #if false
     void patrolling()
@@ -139,21 +153,21 @@ public class EnemyAI : MonoBehaviour, IDamage
     }
 #endif
 
-    IEnumerator flashDamage()
-    {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(1.0f);
-        model.material.color = Color.white;
-    }
+IEnumerator flashDamage()
+{
+    model.material.color = Color.red;
+    yield return new WaitForSeconds(1.0f);
+    model.material.color = Color.white;
+}
 
-    IEnumerator attack()
-    {
-        isAttacking = true;
+IEnumerator attack()
+{
+    isAttacking = true;
 
-        Instantiate(projectile, attackPostion.position, transform.rotation);
+    Instantiate(projectile, attackPostion.position, transform.rotation);
 
-        yield return new WaitForSeconds(attackInterval);
+    yield return new WaitForSeconds(attackInterval);
 
-        isAttacking = false;
-    }
+    isAttacking = false;
+}
 }
