@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float shootSpeed;
     [SerializeField] int shootDistance;
 
-    [SerializeField]  GameObject projectile;
+    [SerializeField] GameObject projectile;
     bool isShooting;
     int HpOriginal;
     int jumpCount;
@@ -36,12 +36,13 @@ public class PlayerController : MonoBehaviour, IDamage
     void Start()
     {
         staminaOrig = stamina;
+        HpOriginal = HP;
+        UpdateUI();
     }
 
     // Update is called once per frame
     void Update()
     {
-        HpOriginal = HP;
         movement();
         sprint();
         if (Input.GetButton("Fire1") && !isShooting)
@@ -50,14 +51,14 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void movement()
     {
-        if(controller.isGrounded)
+        if (controller.isGrounded)
         {
             jumpCount = 0;
             playerVelocity = Vector3.zero;
         }
         moveDirection = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDirection * speed * Time.deltaTime);
-        if(Input.GetButtonDown("Jump") && jumpCount < numOfJumps && stamina > 0)
+        if (Input.GetButtonDown("Jump") && jumpCount < numOfJumps && stamina > 0)
         {
             jumpCount++;
             playerVelocity.y = jumpSpeed;
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void sprint()
     {
-        if(Input.GetButtonDown("Sprint") && stamina > 0)
+        if (Input.GetButtonDown("Sprint") && stamina > 0)
         {
             speed *= sprintMod;
             useStamina(sprintCost);
@@ -82,16 +83,16 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        Instantiate(projectile, Camera.main.transform.position+ new Vector3(0,0,1), Camera.main.transform.rotation);
+        Instantiate(projectile, Camera.main.transform.position + new Vector3(0, 0, 1), Camera.main.transform.rotation);
         yield return new WaitForSeconds(shootSpeed);
         isShooting = false;
     }
 
     public void takeDamage(int amount)
     {
-        HP-=amount;
-        //updatePlayerUI();
-        if(HP < 0)
+        HP -= amount;
+        UpdateUI();
+        if (HP < 0)
         {
             //gameManager.instance.youLose();
         }
@@ -99,7 +100,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void useStamina(int amount)
     {
-        if(staminaOrig - stamina > 0)
+        if (staminaOrig - stamina > 0)
         {
             stamina -= amount;
             //Code for stamina bar when I can access the game manager
@@ -111,11 +112,17 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         yield return new WaitForSeconds(staminaRegenDelay);
 
-        while(stamina < staminaOrig)
+        while (stamina < staminaOrig)
         {
             stamina += staminaRegenRate;
             //Code for stamina bar when I can access the game manager
             yield return regenSpeed;
         }
     }
+    void UpdateUI()
+    {
+        GameManager.instance.playerHPBar.fillAmount = HP / HpOriginal;
+        GameManager.instance.playerStaminaBar.fillAmount = stamina / staminaOrig;
+    }
 }
+
