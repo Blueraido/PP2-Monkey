@@ -7,14 +7,14 @@ public class ButtonProcessing : MonoBehaviour
 {
     public void Resume()
     {
-        GameManager.instance.stateUnPause(); 
+        GameManager.instance.menuProcess();
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameManager.instance.stateUnPause();
-         
+        GameManager.instance.menuProcess();
+
     }
 
     public void Quit()
