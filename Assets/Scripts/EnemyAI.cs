@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-    [SerializeField] Transform shootPostion;
+    [SerializeField] Transform attackPostion;
     [SerializeField] int animTransSpeed;
 
     [SerializeField] int sightRange;
@@ -55,7 +55,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             if (!isAttacking)
             {
-                StartCoroutine(shoot());
+                StartCoroutine(attack());
             }
         }
 #if false
@@ -146,11 +146,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         model.material.color = Color.white;
     }
 
-    IEnumerator shoot()
+    IEnumerator attack()
     {
         isAttacking = true;
 
-        Instantiate(projectile, shootPostion.position, transform.rotation);
+        Instantiate(projectile, attackPostion.position, transform.rotation);
 
         yield return new WaitForSeconds(attackInterval);
 
