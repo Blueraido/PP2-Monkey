@@ -17,9 +17,12 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int jumpCost; //Stamina cost for jumping
     [SerializeField] int staminaRegenRate; //How many stamina points are regenerated per tick
     [SerializeField] float staminaRegenDelay; //Delay before stamina starts regenerating
-    [SerializeField] int stamina;
-    int staminaOrig;
-    WaitForSeconds regenSpeed = new WaitForSeconds(1); //Used to set how fast stamina regenerates
+    [SerializeField] float stamina;
+    WaitForSeconds staminaRegenSpeed = new WaitForSeconds(0.1f); //Created to prevent using too much memeory, used to set how fast stamina regens
+    float staminaOrig;
+    bool isSprinting;
+    float origSpeed;
+    Coroutine staminaRegen;
 
     [SerializeField] int shootDamage;
     [SerializeField] float shootSpeed;
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour, IDamage
     void Start()
     {
         staminaOrig = stamina;
+        origSpeed = speed;
         HpOriginal = HP;
         UpdateUI();
     }
@@ -44,7 +48,23 @@ public class PlayerController : MonoBehaviour, IDamage
     void Update()
     {
         movement();
-        sprint();
+        if (Input.GetButtonDown("Sprint"))
+        {
+            isSprinting = true;
+            speed *= sprintMod;
+        }
+        else if (Input.GetButtonUp("Sprint"))
+        {
+            isSprinting = false;
+            speed = origSpeed;
+        }
+        if(isSprinting)
+        {
+            stamina -= sprintCost * Time.deltaTime;
+            staminaCheck();
+            UpdateUI();
+            coroutineHandler();
+        }
         if (Input.GetButton("Fire1") && !isShooting)
             StartCoroutine(shoot());
     }
@@ -58,27 +78,49 @@ public class PlayerController : MonoBehaviour, IDamage
         }
         moveDirection = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
         controller.Move(moveDirection * speed * Time.deltaTime);
-        if (Input.GetButtonDown("Jump") && jumpCount < numOfJumps && stamina > 0)
+        if (Input.GetButtonDown("Jump") && jumpCount < numOfJumps && stamina >= jumpCost)
         {
             jumpCount++;
             playerVelocity.y = jumpSpeed;
-            useStamina(jumpCost);
+            stamina -= jumpCost;
+            staminaCheck();
+            UpdateUI();
+            coroutineHandler();
         }
         playerVelocity.y -= gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
-
-    void sprint()
+    IEnumerator regenStamina()
     {
-        if (Input.GetButtonDown("Sprint") && stamina > 0)
+        yield return new WaitForSeconds(staminaRegenDelay);
+        while(stamina < staminaOrig)
         {
-            speed *= sprintMod;
-            useStamina(sprintCost);
+            stamina += staminaRegenRate / 10f;
+            staminaCheck();
+            UpdateUI();
+            yield return staminaRegenSpeed;
         }
-        else if (Input.GetButtonUp("Sprint"))
+    }
+    void staminaCheck()
+    {
+        if(stamina < 0)
         {
-            speed /= sprintMod;
+            stamina = 0;
+            isSprinting = false;
+            speed = origSpeed;
         }
+        else if(stamina > staminaOrig)
+        {
+            stamina = staminaOrig;
+        }
+    }
+    void coroutineHandler()
+    {
+        if(staminaRegen != null)
+        {
+            StopCoroutine(staminaRegen);
+        }
+        staminaRegen = StartCoroutine(regenStamina());
     }
     IEnumerator shoot()
     {
@@ -87,7 +129,6 @@ public class PlayerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(shootSpeed);
         isShooting = false;
     }
-
     public void takeDamage(int amount)
     {
         HP -= amount;
@@ -97,32 +138,10 @@ public class PlayerController : MonoBehaviour, IDamage
             GameManager.instance.updateLose();
         }
     }
-
-    void useStamina(int amount)
-    {
-        if (staminaOrig - stamina > 0)
-        {
-            stamina -= amount;
-            //Code for stamina bar when I can access the game manager
-            StartCoroutine(regenStamina());
-        }
-    }
-
-    IEnumerator regenStamina()
-    {
-        yield return new WaitForSeconds(staminaRegenDelay);
-
-        while (stamina < staminaOrig)
-        {
-            stamina += staminaRegenRate;
-            //Code for stamina bar when I can access the game manager
-            yield return regenSpeed;
-        }
-    }
     void UpdateUI()
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / HpOriginal;
-        GameManager.instance.playerStaminaBar.fillAmount = stamina / staminaOrig;
+        GameManager.instance.playerStaminaBar.fillAmount = (float)stamina / staminaOrig;
     }
 }
 
