@@ -414,6 +414,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 558471899399029707, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: stamina
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4225700045627406512, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
       propertyPath: m_Name
       value: Temp Player

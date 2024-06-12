@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour, IDamage
             isSprinting = false;
             speed = origSpeed;
         }
-        if(isSprinting)
+        if(isSprinting && moveDirection.magnitude != 0)
         {
             stamina -= sprintCost * Time.deltaTime;
             staminaCheck();
