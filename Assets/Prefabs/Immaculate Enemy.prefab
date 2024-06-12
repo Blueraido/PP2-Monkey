@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7424502988860699282}
-  - component: {fileID: 7433294520566987336}
   - component: {fileID: 2303202443371574693}
   - component: {fileID: 9158980808231181269}
   - component: {fileID: 6959047823410496757}
   - component: {fileID: 6273366153793201024}
   - component: {fileID: 768584190649090995}
+  - component: {fileID: 8400916464647345877}
   m_Layer: 0
   m_Name: Immaculate Enemy
   m_TagString: Enemy
@@ -38,29 +38,6 @@ Transform:
   - {fileID: 2357154279544625066}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -309.157, z: 0}
---- !u!114 &7433294520566987336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5926786237147270403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f667f60d5177c6469d6a512263c8e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 2303202443371574693}
-  model: {fileID: 6959047823410496757}
-  attackPostion: {fileID: 2357154279544625066}
-  animTransSpeed: 0
-  sightRange: 20
-  attackRange: 50
-  faceTargetSpeed: 12
-  rotateTowardTarget: 8
-  attackInterval: 1
-  projectile: {fileID: 2923012906044095680, guid: 88bd92ef2fd20c74eb2296bd554fc5ad, type: 3}
-  HP: 3
 --- !u!195 &2303202443371574693
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -177,6 +154,31 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8400916464647345877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5926786237147270403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667f9c0af65a62847927c190f50f6bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  model: {fileID: 6959047823410496757}
+  animTransSpeed: 0
+  sightRange: 0
+  faceTargetSpeed: 0
+  rotateTowardTarget: 0
+  HP: 0
+  isAttacking: 0
+  playerInSightRange: 0
+  projectile: {fileID: 0}
+  attackPosition: {fileID: 0}
+  attackRange: 0
+  attackInterval: 0
 --- !u!1 &7167300990997885131
 GameObject:
   m_ObjectHideFlags: 0
