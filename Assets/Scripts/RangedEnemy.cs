@@ -1,0 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RangedEnemy : EnemyAI
+{
+    [SerializeField] GameObject projectile;
+    [SerializeField] Transform attackPosition;
+    [SerializeField] int attackRange;
+    [SerializeField] int attackInterval;
+
+    public override IEnumerator attack()
+    {
+        isAttacking = true;
+        Instantiate(projectile, attackPosition.position, transform.rotation);
+        yield return new WaitForSeconds(attackInterval);
+        isAttacking = false;
+    }
+}

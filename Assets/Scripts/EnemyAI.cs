@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public abstract class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-    [SerializeField] Transform attackPostion;
+    //[SerializeField] Transform attackPostion;
     [SerializeField] int animTransSpeed;
 
     [SerializeField] int sightRange;
-    [SerializeField] int attackRange;
+    //[SerializeField] int attackRange;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int rotateTowardTarget;
-    [SerializeField] float attackInterval;
-    [SerializeField] GameObject projectile;
+    //[SerializeField] float attackInterval;
+    //[SerializeField] GameObject projectile;
 
     [SerializeField] int HP;
 
-    bool isAttacking;
-    bool playerInSightRange;
+    public bool isAttacking;
+    public bool playerInSightRange;
 
     Vector3 playerDir;
 
@@ -33,13 +33,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         GameManager.instance.updateGoalEnemy(1);
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         // Get the direction of the player
         playerDir = GameManager.instance.player.transform.position - transform.position;
@@ -68,7 +68,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 #endif
     }
 
-    void faceTarget()
+    public virtual void faceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
 
-    public void takeDamage(int amount)
+    public virtual void takeDamage(int amount)
     {
         HP -= amount;
         StartCoroutine(flashDamage());
@@ -88,13 +88,13 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInSightRange = true;
     }
 
-    public void OnTriggerExit(Collider other)
+    public virtual void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInSightRange = false;
@@ -153,18 +153,20 @@ public class EnemyAI : MonoBehaviour, IDamage
     }
 #endif
 
-IEnumerator flashDamage()
-{
-    model.material.color = Color.red;
-    yield return new WaitForSeconds(1.0f);
-    model.material.color = Color.white;
+    public virtual IEnumerator flashDamage()
+    {
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(1.0f);
+        model.material.color = Color.white;
+    }
+
+    public abstract IEnumerator attack();
+
 }
 
-IEnumerator attack()
-{
-    isAttacking = true;
-    Instantiate(projectile, attackPostion.position, transform.rotation);
-    yield return new WaitForSeconds(attackInterval);
-    isAttacking = false;
-}
-}
+#if false
+isAttacking = true;
+Instantiate(meleeStrikePoint, attackPostion.position, transform.rotation);
+yield return new WaitForSeconds(attackInterval);
+isAttacking = false;
+#endif
