@@ -10,12 +10,19 @@ public class Projectile : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
     [SerializeField] GameObject hitEffect;
-
+    [SerializeField] float arc;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(arc == 0)
+        {
         body.velocity = transform.forward * speed;
+        }
+        else
+        {
+            body.velocity = (transform.forward + new Vector3(0,arc,0)) * speed;
+        }
         Destroy(gameObject, destroyTime);
     }
 
