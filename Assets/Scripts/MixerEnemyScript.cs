@@ -33,8 +33,8 @@ public class MixerEnemyScript : EnemyAI
         if (distanceToPlayer < meleeAttackRange)
             playerInMeleeRange = true;
 
-        //if (distanceToPlayer < playerInRangedAttackRange)
-        //    playerInRangedAttackRange = true;
+        if (distanceToPlayer < rangedAttackRange)
+            playerInRangedAttackRange = true;
 
         isAttacking = true;
         if (playerInRangedAttackRange && !playerInMeleeRange)
