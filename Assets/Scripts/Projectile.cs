@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            body.velocity = (transform.forward + new Vector3(0,arc,0)) * speed;
+            body.velocity = ((GameManager.instance.player.transform.position - transform.position) + new Vector3(0,arc,0)) * speed;
         }
         Destroy(gameObject, destroyTime);
     }
