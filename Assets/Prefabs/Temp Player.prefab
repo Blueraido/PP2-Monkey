@@ -56,11 +56,11 @@ MonoBehaviour:
   numOfJumps: 3
   jumpSpeed: 10
   gravity: 25
-  sprintCost: 1
-  jumpCost: 1
-  staminaRegenRate: 1
-  staminaRegenDelay: 1
-  stamina: 1
+  sprintCost: 10
+  jumpCost: 5
+  staminaRegenRate: 10
+  staminaRegenDelay: 2
+  stamina: 100
   shootDamage: 1
   shootSpeed: 1
   shootDistance: 1
