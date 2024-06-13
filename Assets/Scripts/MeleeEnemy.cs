@@ -8,7 +8,7 @@ public class MeleeEnemy : EnemyAI
 
     [SerializeField] int attackInterval;
     [SerializeField] Transform attackPosition;
-    [SerializeField] Animator anim;
+
 
     public override IEnumerator attack()
     {

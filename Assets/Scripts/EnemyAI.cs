@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public abstract class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Animator anim;
+    [SerializeField] public Animator anim;
     [SerializeField] Renderer model;
     [SerializeField] int animTransSpeed;
 

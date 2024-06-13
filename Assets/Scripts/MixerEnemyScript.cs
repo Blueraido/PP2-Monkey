@@ -13,7 +13,6 @@ public class MixerEnemyScript : EnemyAI
     [SerializeField] int meleeAttackDamage;
     [SerializeField] Transform meleeAttackPos;
     [SerializeField] Transform rangedAttackPos;
-    [SerializeField] Animator anim;
 
     //bool playerInMeleeRange;
     //bool playerInRangedAttackRange;
