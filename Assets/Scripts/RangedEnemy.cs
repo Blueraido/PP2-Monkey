@@ -7,7 +7,6 @@ public class RangedEnemy : EnemyAI
     [SerializeField] GameObject projectile;
     [SerializeField] Animator anim;
     [SerializeField] Transform attackPosition;
-    [SerializeField] int attackRange;
     [SerializeField] int attackInterval;
 
     public override IEnumerator attack()

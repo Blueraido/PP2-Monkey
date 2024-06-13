@@ -8,15 +8,11 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] Renderer model;
-    //[SerializeField] Transform attackPostion;
     [SerializeField] int animTransSpeed;
 
     [SerializeField] int sightRange;
-    //[SerializeField] int attackRange;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int rotateTowardTarget;
-    //[SerializeField] float attackInterval;
-    //[SerializeField] GameObject projectile;
     [SerializeField] public int rangedAttackRange;
     [SerializeField] public int meleeAttackRange;
 
