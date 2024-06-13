@@ -30,19 +30,23 @@ public class MixerEnemyScript : EnemyAI
     public override IEnumerator attack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
-        playerInMeleeRange = distanceToPlayer <= rangedAttackRange;
-        playerInRangedAttackRange = distanceToPlayer <= rangedAttackRange;
+        if (distanceToPlayer < meleeAttackRange)
+            playerInMeleeRange = true;
+
+        //if (distanceToPlayer < playerInRangedAttackRange)
+        //    playerInRangedAttackRange = true;
 
         isAttacking = true;
         if (playerInRangedAttackRange && !playerInMeleeRange)
         {
+            playerInMeleeRange = false;
             anim.SetTrigger("Ranged Attack");
             Instantiate(projectile, rangedAttackPos.position, transform.rotation);
 
             yield return new WaitForSeconds(rangedAttackInterval);
         }
         
-        if (playerInMeleeRange)
+        if (playerInMeleeRange && playerInRangedAttackRange)
         {
             
             RaycastHit hit;

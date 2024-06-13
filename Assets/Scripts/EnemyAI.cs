@@ -63,7 +63,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
         }
 
         float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
-        playerInMeleeRange = distanceToPlayer <= rangedAttackRange;
+        playerInMeleeRange = distanceToPlayer <= meleeAttackRange;
         playerInRangedAttackRange = distanceToPlayer <= rangedAttackRange;
 #if false
         if (!playerInSightRange && !playerInAttackRange)
