@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public abstract class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
     [SerializeField] Renderer model;
     //[SerializeField] Transform attackPostion;
     [SerializeField] int animTransSpeed;
@@ -16,11 +17,16 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int rotateTowardTarget;
     //[SerializeField] float attackInterval;
     //[SerializeField] GameObject projectile;
+    [SerializeField] public int rangedAttackRange;
+    [SerializeField] public int meleeAttackRange;
 
     [SerializeField] int HP;
 
     public bool isAttacking;
     public bool playerInSightRange;
+
+    public bool playerInMeleeRange;
+    public bool playerInRangedAttackRange;
 
     Vector3 playerDir;
 
@@ -30,7 +36,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     bool walkPointSet;
     public float walkPointRange; 
 #endif
-
+    
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -41,6 +47,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     public virtual void Update()
     {
+        anim.SetFloat("Blend", agent.velocity.normalized.magnitude);
         // Get the direction of the player
         playerDir = GameManager.instance.player.transform.position - transform.position;
 
@@ -58,6 +65,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
                 StartCoroutine(attack());
             }
         }
+
+        float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
+        playerInMeleeRange = distanceToPlayer <= rangedAttackRange;
+        playerInRangedAttackRange = distanceToPlayer <= rangedAttackRange;
 #if false
         if (!playerInSightRange && !playerInAttackRange)
             patrolling();
@@ -161,6 +172,14 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     }
 
     public abstract IEnumerator attack();
+
+    void OnDrawGizmos()
+    {
+        // Draw a red line indicating the forward direction
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
+    }
+
 
 }
 

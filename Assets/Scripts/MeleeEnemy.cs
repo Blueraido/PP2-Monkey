@@ -8,11 +8,12 @@ public class MeleeEnemy : EnemyAI
     [SerializeField] int attackRange;
     [SerializeField] int attackInterval;
     [SerializeField] Transform attackPosition;
+    [SerializeField] Animator anim;
 
     public override IEnumerator attack()
     {
         isAttacking = true;
-
+        anim.SetTrigger("Melee Attack");
         if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= attackRange )
         {
             RaycastHit hit;
@@ -20,9 +21,7 @@ public class MeleeEnemy : EnemyAI
             {
                 IDamage dmg = hit.collider.GetComponent<IDamage>();
                 if (hit.transform != transform && dmg != null)
-                {
                     dmg.takeDamage(attackRange);
-                }
             }
 
         }
