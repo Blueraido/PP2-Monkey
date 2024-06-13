@@ -55,13 +55,15 @@ MonoBehaviour:
   sightRange: 35
   faceTargetSpeed: 20
   rotateTowardTarget: 10
-  HP: 99
+  rangedAttackRange: 0
+  meleeAttackRange: 0
+  HP: 5
   isAttacking: 0
   playerInSightRange: 0
+  playerInMeleeRange: 0
+  playerInRangedAttackRange: 0
   projectile: {fileID: 2923012906044095680, guid: 88bd92ef2fd20c74eb2296bd554fc5ad, type: 3}
-  anim: {fileID: 6752160093070317701}
   attackPosition: {fileID: 7051319833315641197}
-  attackRange: 15
   attackInterval: 1
 --- !u!195 &7091006162448999221
 NavMeshAgent:
@@ -180,13 +182,15 @@ MonoBehaviour:
   sightRange: 0
   faceTargetSpeed: 0
   rotateTowardTarget: 0
+  rangedAttackRange: 0
+  meleeAttackRange: 0
   HP: 0
   isAttacking: 0
   playerInSightRange: 0
+  playerInMeleeRange: 0
+  playerInRangedAttackRange: 0
   projectile: {fileID: 0}
-  anim: {fileID: 0}
   attackPosition: {fileID: 0}
-  attackRange: 0
   attackInterval: 0
 --- !u!1001 &6752160093079603313
 PrefabInstance:
