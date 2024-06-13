@@ -140,7 +140,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7051319833315641197}
-  - component: {fileID: 6664467903645124840}
   m_Layer: 0
   m_Name: Attack Pos
   m_TagString: Untagged
@@ -163,35 +162,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6752160093079515009}
   m_LocalEulerAnglesHint: {x: 34.798, y: -5.109, z: 7.224}
---- !u!114 &6664467903645124840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7825784804158844614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667f9c0af65a62847927c190f50f6bdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  anim: {fileID: 0}
-  model: {fileID: 0}
-  animTransSpeed: 0
-  sightRange: 0
-  faceTargetSpeed: 0
-  rotateTowardTarget: 0
-  rangedAttackRange: 0
-  meleeAttackRange: 0
-  HP: 0
-  isAttacking: 0
-  playerInSightRange: 0
-  playerInMeleeRange: 0
-  playerInRangedAttackRange: 0
-  projectile: {fileID: 0}
-  attackPosition: {fileID: 0}
-  attackInterval: 0
 --- !u!1001 &6752160093079603313
 PrefabInstance:
   m_ObjectHideFlags: 0
