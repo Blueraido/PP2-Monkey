@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        Instantiate(projectile, Camera.main.transform.position + new Vector3(0, 0, 1), Camera.main.transform.rotation);
+        Instantiate(projectile, Camera.main.transform.position + new Vector3(0, 1, 1), Camera.main.transform.rotation);
         yield return new WaitForSeconds(shootSpeed);
         isShooting = false;
     }
