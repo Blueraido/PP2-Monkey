@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject menuLevelUp; // Managed by LevelManager.cs
 
     // Objective text ui processing
     [SerializeField] TMP_Text enemyCountText;
@@ -113,5 +114,10 @@ public class GameManager : MonoBehaviour
     public void updateLose() // Lose menu processing
     { 
         menuProcess(menuLose);
+    }
+
+    public void updateLevelUp()
+    {
+        menuProcess(menuLevelUp);
     }
 }
