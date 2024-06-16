@@ -95,7 +95,7 @@ public class PlayerMovementC : MonoBehaviour
     }
     private void jumpProcess()
     {
-        //Resets y velocity to prevent jumping issues
+        //Resets y velocity to ensure always jumping the same height
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpSpeed, ForceMode.Impulse);
     }
