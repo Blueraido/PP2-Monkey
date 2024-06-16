@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] int xSens;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
-    [SerializeField] float FOV;
+
 
     public Transform camOrientation;
 
@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        Camera.main.fieldOfView = FOV;
+
     }
 
     // Update is called once per frame
