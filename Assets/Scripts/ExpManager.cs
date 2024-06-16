@@ -9,15 +9,13 @@ public class ExpManager : MonoBehaviour
     public static ExpManager instance;
 
     // Player's level and exp, public for now but should prob have getters and setters for security
-    public int playerExp;
-    public int playerLevel;
-    public int playerLevelScale;
-    int expForNextLevel; // Will get multiplied by playerLevelScale per level gained
+    public int playerExp = 0;
+    public int playerLevel = 0;
+    public int expForNextLevel; // Increases by itself / 2 every level up
 
     // Serialized inputs for starting exp, level, and level mult; purely for testing
     [SerializeField] int modExp = 0;
     [SerializeField] int modLevel = 0;
-    [SerializeField] int modLevelScale = 1;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,7 +35,12 @@ public class ExpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*                                   
+        if (Input.GetButtonDown("Fire1"))   // Debug code
+        {
+            updateExp(10);
+        }
+        */
     }
 
     public void updateExp(int exp = 0) 
@@ -45,15 +48,15 @@ public class ExpManager : MonoBehaviour
         playerExp += exp;
         if (playerExp >= expForNextLevel)
         {
-            playerExp -= expForNextLevel; // Needs testing to verify this works properly
             updateLevel(1);
         } // There may be an error where, if exp is greater than the next expfornextlevel value,
     } // an update in exp will be needed to start the level up menu. Hopefully we can't level that quickly.
 
     public void updateLevel(int level)
     {
+        playerExp -= expForNextLevel; // Needs testing to verify this works properly
+        expForNextLevel += expForNextLevel/2;
         playerLevel += level;
-        expForNextLevel = expForNextLevel * playerLevelScale * modLevelScale;
         GameManager.instance.updateLevelUp();
     }
 }
