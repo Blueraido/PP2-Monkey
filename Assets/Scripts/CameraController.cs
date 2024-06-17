@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -10,17 +9,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
 
-
-    public Transform camOrientation;
-
     float rotX;
-    float rotY;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
     }
 
     // Update is called once per frame
@@ -37,15 +31,14 @@ public class CameraController : MonoBehaviour
         {
             rotX -= mouseY;
         }
-        rotY += mouseX;
+        //clamp the rotX on the x axis
 
         rotX = Mathf.Clamp(rotX, lockVertMin, lockVertMax);
 
         //rotate the camera on the x-axis
-        transform.rotation = Quaternion.Euler(rotX, rotY, 0);
+        transform.localRotation = Quaternion.Euler(rotX, 0, 0);
 
-        //get camera orientation
-        camOrientation.rotation = Quaternion.Euler(0, rotY, 0);
-
+        //rotate the player on the y-xis
+        transform.parent.Rotate(Vector3.up * mouseX);
     }
 }
