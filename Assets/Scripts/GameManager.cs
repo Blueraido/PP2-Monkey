@@ -116,9 +116,7 @@ public class GameManager : MonoBehaviour
     {
         // menuProcess(menuLose);
         // This should fix a menu processing bug where loss state doesn't pop when HP is set below zero
-        togglePause();
-        menuActive.SetActive(true);
-        menuActive = menuLose;
+        menuProcess(menuLose);
     }
 
     public void updateLevelUp()

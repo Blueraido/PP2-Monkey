@@ -12,6 +12,7 @@ public class ExpManager : MonoBehaviour
     public int playerExp = 0;
     public int playerLevel = 0;
     public int expForNextLevel; // Increases by itself / 2 every level up
+    public int baseExpForNextLevel;
 
     // Serialized inputs for starting exp, level, and level mult; purely for testing
     [SerializeField] int modExp = 0;
@@ -26,11 +27,12 @@ public class ExpManager : MonoBehaviour
         // Base experience needed to go from level 0 to 1
         // Could be refactord to go from 1 to 2
         expForNextLevel = 40;
+        baseExpForNextLevel = expForNextLevel;
 
         // Purely for the modifiers: makes sure that expfornextlevel is properly scaled to overriden level
         for (int levelOverride = 0; levelOverride < modLevel; levelOverride++)
         {
-            expForNextLevel += expForNextLevel / 2;
+            expForNextLevel += baseExpForNextLevel / 2;
         }
 
         // Overrides for testing
@@ -61,7 +63,7 @@ public class ExpManager : MonoBehaviour
     public void updateLevel(int level = 0)
     {
         playerExp -= expForNextLevel; // Needs testing to verify this works properly
-        expForNextLevel += expForNextLevel/2; // Temp level increase
+        expForNextLevel += baseExpForNextLevel/2; // Temp level increase
         playerLevel += level;
         GameManager.instance.updateLevelUp(); // Manages menu process
     }
