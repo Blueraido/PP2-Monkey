@@ -142,6 +142,8 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / HpOriginal;
         GameManager.instance.playerStaminaBar.fillAmount = (float)stamina / staminaOrig;
+        GameManager.instance.playerHealthValueText.text = HP.ToString() + " / " + HpOriginal.ToString();
+        GameManager.instance.playerStaminaValueText.text = stamina.ToString() + " / " + staminaOrig.ToString();
     }
 }
 
