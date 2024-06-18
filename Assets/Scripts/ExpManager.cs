@@ -27,6 +27,12 @@ public class ExpManager : MonoBehaviour
         // Could be refactord to go from 1 to 2
         expForNextLevel = 40;
 
+        // Purely for the modifiers: makes sure that expfornextlevel is properly scaled to overriden level
+        for (int levelOverride = 0; levelOverride < modLevel; levelOverride++)
+        {
+            expForNextLevel += expForNextLevel / 2;
+        }
+
         // Overrides for testing
         playerExp += modExp;
         playerLevel += modLevel;
@@ -52,11 +58,11 @@ public class ExpManager : MonoBehaviour
         } // There may be an error where, if exp is greater than the next expfornextlevel value,
     } // an update in exp will be needed to start the level up menu. Hopefully we can't level that quickly.
 
-    public void updateLevel(int level)
+    public void updateLevel(int level = 0)
     {
         playerExp -= expForNextLevel; // Needs testing to verify this works properly
-        expForNextLevel += expForNextLevel/2;
+        expForNextLevel += expForNextLevel/2; // Temp level increase
         playerLevel += level;
-        GameManager.instance.updateLevelUp();
+        GameManager.instance.updateLevelUp(); // Manages menu process
     }
 }

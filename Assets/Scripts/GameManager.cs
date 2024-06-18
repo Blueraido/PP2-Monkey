@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -112,8 +113,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void updateLose() // Lose menu processing
-    { 
-        menuProcess(menuLose);
+    {
+        // menuProcess(menuLose);
+        // This should fix a menu processing bug where loss state doesn't pop when HP is set below zero
+        togglePause();
+        menuActive.SetActive(true);
+        menuActive = menuLose;
     }
 
     public void updateLevelUp()
