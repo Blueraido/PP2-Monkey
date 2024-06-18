@@ -12,11 +12,11 @@ TagManager:
   - isGround
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - PlayerProjectiles
+  - Enemy
+  - EnemyProjectiles
+  - 'AOE '
   - 
   - 
   - 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8951794423606998075}
   - component: {fileID: 7780020854916717176}
   - component: {fileID: -6904076863957674144}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MonkeyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

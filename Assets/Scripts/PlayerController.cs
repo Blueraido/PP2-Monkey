@@ -24,9 +24,8 @@ public class PlayerController : MonoBehaviour, IDamage
     float origSpeed;
     Coroutine staminaRegen;
 
-    [SerializeField] int shootDamage;
     [SerializeField] float shootSpeed;
-    [SerializeField] int shootDistance;
+
 
     [SerializeField] GameObject projectile;
     bool isShooting;

@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class ParticleDamage : MonoBehaviour
 {
-    [SerializeField] int particleDamage;
-    [SerializeField] ParticleSystem particles;
+    [SerializeField] int AOEDamage;
+    [SerializeField] SphereCollider AOECollider;
 
-
-
-    private void OnParticleCollision(GameObject other)
+    private void OnCollisionEnter(Collision collision)
     {
-        IDamage damage = other.gameObject.GetComponent<IDamage>();
+        IDamage damage = collision.gameObject.GetComponent<IDamage>();
         if (damage != null)
         {
-            damage.takeDamage(particleDamage);
+            damage.takeDamage(AOEDamage);
             Destroy(this);
         }
     }
+
 }

@@ -455,6 +455,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Mixer MK!
       objectReference: {fileID: 0}
+    - target: {fileID: 2077847391188396096, guid: 1927efdd3449bdb4eb435e804d3afa46, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8226475583018881452, guid: 1927efdd3449bdb4eb435e804d3afa46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.489607
@@ -811,6 +815,14 @@ PrefabInstance:
     - target: {fileID: 3260282404135805218, guid: 99e2f7e6dd9ef7a41a7e265dd8e7ed69, type: 3}
       propertyPath: m_Name
       value: Enemy Ranged MK!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260282404135805218, guid: 99e2f7e6dd9ef7a41a7e265dd8e7ed69, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3260282404135805218, guid: 99e2f7e6dd9ef7a41a7e265dd8e7ed69, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1374,9 +1386,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 558471899399029707, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: HP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 558471899399029707, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: shootDamage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4225700045627406512, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
       propertyPath: m_Name
       value: Temp Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225700045627406512, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4398081448237340482, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
       propertyPath: sens
@@ -1784,6 +1808,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3632559727275210287, guid: 3bf8eac52666f0c4c967aed5743ed723, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4119087421289586955, guid: 3bf8eac52666f0c4c967aed5743ed723, type: 3}
       propertyPath: meleeDamage
       value: 2
@@ -1794,6 +1822,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119087421289586955, guid: 3bf8eac52666f0c4c967aed5743ed723, type: 3}
       propertyPath: rangedAttackRange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147738346354385516, guid: 3bf8eac52666f0c4c967aed5743ed723, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7198242198421816026, guid: 3bf8eac52666f0c4c967aed5743ed723, type: 3}
@@ -1839,6 +1871,10 @@ PrefabInstance:
     - target: {fileID: 8416727706317578281, guid: 3bf8eac52666f0c4c967aed5743ed723, type: 3}
       propertyPath: m_Name
       value: Enemy Melee MK!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416727706317578281, guid: 3bf8eac52666f0c4c967aed5743ed723, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8416727706317578281, guid: 3bf8eac52666f0c4c967aed5743ed723, type: 3}
       propertyPath: m_TagString
