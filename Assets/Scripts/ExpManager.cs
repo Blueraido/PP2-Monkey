@@ -32,7 +32,7 @@ public class ExpManager : MonoBehaviour
         // Purely for the modifiers: makes sure that expfornextlevel is properly scaled to overriden level
         for (int levelOverride = 0; levelOverride < modLevel; levelOverride++)
         {
-            expForNextLevel += baseExpForNextLevel / 2;
+            expForNextLevel += expForNextLevel / 2;
         }
 
         // Overrides for testing

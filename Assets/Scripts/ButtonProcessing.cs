@@ -17,6 +17,11 @@ public class ButtonProcessing : MonoBehaviour
 
     }
 
+    public void expSpeed()
+    {
+        GameManager.instance.playerScript.speed += 1;
+    }
+
     public void Quit()
     {
 #if UNITY_EDITOR
