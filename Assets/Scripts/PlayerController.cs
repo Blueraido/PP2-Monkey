@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
 
     [SerializeField] int HP;
-    [SerializeField] public float speed;
+    [SerializeField] float speed;
     [SerializeField] float sprintMod;
     [SerializeField] int numOfJumps;
     [SerializeField] int jumpSpeed;

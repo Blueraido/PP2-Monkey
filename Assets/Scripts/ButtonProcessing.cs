@@ -16,12 +16,20 @@ public class ButtonProcessing : MonoBehaviour
         GameManager.instance.menuProcess();
 
     }
+    //public void expHealth()
+    //{
+    //    GameManager.instance.playerScript.HP += 5;
+    //}
+    //public void expSpeed()
+    //{
+    //    GameManager.instance.playerScript.speed += 1;
+    //}
+    //public void expStamina()
+    //{
+    //    GameManager.instance.playerScript.stamina += 5;
+    //}
 
-    public void expSpeed()
-    {
-        GameManager.instance.playerScript.speed += 1;
-    }
-
+ 
     public void Quit()
     {
 #if UNITY_EDITOR
