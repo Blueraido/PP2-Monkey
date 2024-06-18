@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 5409991790142991966}
   damage: 1
-  speed: 10
-  destroyTime: 3
+  speed: 20
+  destroyTime: 10
   hitEffect: {fileID: 1092222898296383152, guid: 79319bd141ed8a14f85fed63c7c78ba5, type: 3}
+  arc: 0
