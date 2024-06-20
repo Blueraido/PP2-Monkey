@@ -31,6 +31,7 @@ public class ExpManager : MonoBehaviour
     [SerializeField] GameObject expStart3;
 
     [SerializeField] List<GameObject> expList;
+    [SerializeField] bool debug;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,22 +50,26 @@ public class ExpManager : MonoBehaviour
         // Overrides for testing
         playerExp += modExp;
         playerLevel += modLevel;
+        UpdateUI();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*                          
         if (Input.GetButtonDown("Fire1"))   // Debug code
         {
-            updateExp(10);
+            if (debug)
+            {
+                updateExp(10);
+            }
         }
-        */
+
     }
 
     public void updateExp(int exp = 0) 
     {
         playerExp += exp;
+        UpdateUI();
         if (playerExp >= expForNextLevel)
         {
             updateLevel(1);
@@ -81,6 +86,8 @@ public class ExpManager : MonoBehaviour
         expForNextLevel += baseExpForNextLevel/2; // Temp level increase
         playerLevel += level;
 
+        UpdateUI();
+
         // Generates random number based on list size, replaces spaces on level up to fix
         List<GameObject> temp = new List<GameObject> ();
         
@@ -90,26 +97,31 @@ public class ExpManager : MonoBehaviour
         }
 
         int rand = Random.Range(0, temp.Count);
-        //expList[rand].transform.position = expOption1.transform.position;
         expOption1 = temp[rand];
         expOption1.SetActive(true);
         expOption1.transform.position = expStart1.transform.position;
         temp.RemoveAt(rand);
 
         rand = Random.Range(0, temp.Count);
-        //expList[rand].transform.position = expOption2.transform.position;
         expOption2 = temp[rand];
         expOption2.SetActive(true);
         expOption2.transform.position = expStart2.transform.position;
         temp.RemoveAt(rand);
 
         rand = Random.Range(0, temp.Count);
-        //expList[rand].transform.position = expOption3.transform.position;
         expOption3 = temp[rand];
         expOption3.SetActive(true);
         expOption3.transform.position = expStart3.transform.position;
         temp.RemoveAt(rand);
 
         GameManager.instance.updateLevelUp(); // Displays level up menu
+    }
+
+    void UpdateUI()
+    {
+        GameManager.instance.playerExpBar.fillAmount = (float)playerExp / expForNextLevel;
+        GameManager.instance.playerExpValueText.text = playerExp.ToString() + "  /  " + expForNextLevel.ToString() + " exp";
+        GameManager.instance.playerLevelValueText.text = "Level " + playerLevel.ToString();
+        // Debug.Log("UI UPDATED!!!!");
     }
 }
