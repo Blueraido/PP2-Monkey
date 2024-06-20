@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] Camera cam;
 
     [SerializeField] int HP;
+    [SerializeField] int Stamina;
 
 
     [SerializeField] float shootSpeed;
@@ -17,12 +18,14 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] GameObject projectile;
     bool isShooting;
     int HpOriginal;
+    int StaminaOriginal;
     int jumpCount;
 
     // Start is called before the first frame update
     void Start()
     {
         HpOriginal = HP;
+        StaminaOriginal = Stamina;
         UpdateUI();
     }
 
@@ -55,6 +58,8 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / HpOriginal;
         GameManager.instance.playerHealthValueText.text = HP.ToString() + " / " + HpOriginal.ToString();
+        GameManager.instance.playerStaminaBar.fillAmount = (float)Stamina / StaminaOriginal;
+        GameManager.instance.playerStaminaValueText.text = Stamina.ToString() + " / " + StaminaOriginal.ToString();
     }
 }
 
