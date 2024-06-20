@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenuAttribute]
-public class WeaponStats : MonoBehaviour
+public class WeaponStats : ScriptableObject
 {
 
     public GameObject model;
@@ -14,7 +14,6 @@ public class WeaponStats : MonoBehaviour
     [Range(1, 10)] public int destroyTime;
     public GameObject HitEffect;
     public AudioClip Sound;
-
     [Range(1, 10)] public float arc;
 
 }
