@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,12 +12,25 @@ public class ExpManager : MonoBehaviour
     // Player's level and exp, public for now but should prob have getters and setters for security
     public int playerExp = 0;
     public int playerLevel = 0;
-    public int expForNextLevel; // Increases by itself / 2 every level up
-    public int baseExpForNextLevel;
+    [SerializeField] int expForNextLevel = 40; // Increases by itself / 2 every level up
+    int baseExpForNextLevel;
+
 
     // Serialized inputs for starting exp, level, and level mult; purely for testing
     [SerializeField] int modExp = 0;
     [SerializeField] int modLevel = 0;
+
+    // Objects to be replaced by random list of 
+    [SerializeField] GameObject expOption1;
+    [SerializeField] GameObject expOption2;
+    [SerializeField] GameObject expOption3;
+    
+    [SerializeField] GameObject randLevelDamage;
+    [SerializeField] GameObject randLevelHealth;
+    [SerializeField] GameObject randLevelSpeed;
+    [SerializeField] GameObject randLevelStamina;
+    [SerializeField] GameObject randLevelJumpcount;
+    List<GameObject> expList;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,9 +38,6 @@ public class ExpManager : MonoBehaviour
         // Singleton moment
         instance = this;
 
-        // Base experience needed to go from level 0 to 1
-        // Could be refactord to go from 1 to 2
-        expForNextLevel = 40;
         baseExpForNextLevel = expForNextLevel;
 
         // Purely for the modifiers: makes sure that expfornextlevel is properly scaled to overriden level
@@ -43,12 +54,12 @@ public class ExpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*                                   
+                                          
         if (Input.GetButtonDown("Fire1"))   // Debug code
         {
             updateExp(10);
         }
-        */
+        
     }
 
     public void updateExp(int exp = 0) 
@@ -65,6 +76,37 @@ public class ExpManager : MonoBehaviour
         playerExp -= expForNextLevel; // Needs testing to verify this works properly
         expForNextLevel += baseExpForNextLevel/2; // Temp level increase
         playerLevel += level;
-        GameManager.instance.updateLevelUp(); // Manages menu process
+
+        // Generates random number based on list size, replaces spaces on level up to fix
+        expList = new List<GameObject>();
+        randomizeList();
+
+        int rand = Random.Range(0, expList.Count);
+        expList[rand].transform.position = expOption1.transform.position;
+        expOption1 = expList[rand];
+        expOption1.SetActive(true);
+        expList.RemoveAt(rand);
+
+        rand = Random.Range(0, expList.Count);
+        expList[rand].transform.position = expOption2.transform.position;
+        expOption2 = expList[rand];
+        expOption2.SetActive(true);
+        expList.RemoveAt(rand);
+
+        rand = Random.Range(0, expList.Count);
+        expList[rand].transform.position = expOption3.transform.position;
+        expOption3 = expList[rand];
+        expOption3.SetActive(true);
+        expList.RemoveAt(rand);
+
+        GameManager.instance.updateLevelUp(); // Displays level up menu
+    }
+    void randomizeList() // Anytime we add more menus, add them here also.
+    {
+        expList.Add(randLevelDamage);
+        expList.Add(randLevelHealth);
+        expList.Add(randLevelSpeed);
+        expList.Add(randLevelStamina);
+        expList.Add(randLevelJumpcount);
     }
 }
