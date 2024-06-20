@@ -31,6 +31,7 @@ public class ExpManager : MonoBehaviour
     [SerializeField] GameObject expStart3;
 
     [SerializeField] List<GameObject> expList;
+    [SerializeField] bool debug;
 
     // Start is called before the first frame update
     void Awake()
@@ -55,12 +56,14 @@ public class ExpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-                                 
         if (Input.GetButtonDown("Fire1"))   // Debug code
         {
-            updateExp(10);
+            if (debug)
+            {
+                updateExp(10);
+            }
         }
-        
+
     }
 
     public void updateExp(int exp = 0) 
