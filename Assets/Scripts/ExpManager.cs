@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ExpManager : MonoBehaviour
 {
@@ -29,12 +30,7 @@ public class ExpManager : MonoBehaviour
     [SerializeField] GameObject expStart2;
     [SerializeField] GameObject expStart3;
 
-    [SerializeField] GameObject randLevelDamage;
-    [SerializeField] GameObject randLevelHealth;
-    [SerializeField] GameObject randLevelSpeed;
-    [SerializeField] GameObject randLevelStamina;
-    [SerializeField] GameObject randLevelJumpcount;
-    List<GameObject> expList;
+    [SerializeField] List<GameObject> expList;
 
     // Start is called before the first frame update
     void Awake()
@@ -58,7 +54,7 @@ public class ExpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*                               
+        /*                          
         if (Input.GetButtonDown("Fire1"))   // Debug code
         {
             updateExp(10);
@@ -81,47 +77,39 @@ public class ExpManager : MonoBehaviour
         expOption2.SetActive(false);
         expOption3.SetActive(false);
 
-        expOption1.transform.position = expStart1.transform.position;
-        expOption2.transform.position = expStart2.transform.position;
-        expOption3.transform.position = expStart3.transform.position;
-
         playerExp -= expForNextLevel; // Needs testing to verify this works properly
         expForNextLevel += baseExpForNextLevel/2; // Temp level increase
         playerLevel += level;
 
         // Generates random number based on list size, replaces spaces on level up to fix
-        expList = new List<GameObject>();
-        randomizeList();
+        List<GameObject> temp = new List<GameObject> ();
+        
+        for (int randMenu = 0; randMenu < expList.Count(); randMenu++)
+        {
+            temp.Add(expList[randMenu]);
+        }
 
-        int rand = Random.Range(0, expList.Count);
+        int rand = Random.Range(0, temp.Count);
         //expList[rand].transform.position = expOption1.transform.position;
-        expOption1 = expList[rand];
+        expOption1 = temp[rand];
         expOption1.SetActive(true);
         expOption1.transform.position = expStart1.transform.position;
-        expList.RemoveAt(rand);
+        temp.RemoveAt(rand);
 
-        rand = Random.Range(0, expList.Count);
+        rand = Random.Range(0, temp.Count);
         //expList[rand].transform.position = expOption2.transform.position;
-        expOption2 = expList[rand];
+        expOption2 = temp[rand];
         expOption2.SetActive(true);
         expOption2.transform.position = expStart2.transform.position;
-        expList.RemoveAt(rand);
+        temp.RemoveAt(rand);
 
-        rand = Random.Range(0, expList.Count);
+        rand = Random.Range(0, temp.Count);
         //expList[rand].transform.position = expOption3.transform.position;
-        expOption3 = expList[rand];
+        expOption3 = temp[rand];
         expOption3.SetActive(true);
         expOption3.transform.position = expStart3.transform.position;
-        expList.RemoveAt(rand);
+        temp.RemoveAt(rand);
 
         GameManager.instance.updateLevelUp(); // Displays level up menu
-    }
-    void randomizeList() // Anytime we add more menus, add them here also.
-    {
-        expList.Add(randLevelDamage);
-        expList.Add(randLevelHealth);
-        expList.Add(randLevelSpeed);
-        expList.Add(randLevelStamina);
-        expList.Add(randLevelJumpcount);
     }
 }

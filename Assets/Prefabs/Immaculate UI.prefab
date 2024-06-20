@@ -7448,11 +7448,12 @@ MonoBehaviour:
   expStart1: {fileID: 3036229778399722102}
   expStart2: {fileID: 2996769145885265911}
   expStart3: {fileID: 7402015588533131789}
-  randLevelDamage: {fileID: 5589992000649616553}
-  randLevelHealth: {fileID: 7907449493156465706}
-  randLevelSpeed: {fileID: 7908259092833527372}
-  randLevelStamina: {fileID: 7024190780323870467}
-  randLevelJumpcount: {fileID: 4761622880157775836}
+  expList:
+  - {fileID: 5589992000649616553}
+  - {fileID: 7907449493156465706}
+  - {fileID: 7908259092833527372}
+  - {fileID: 7024190780323870467}
+  - {fileID: 4761622880157775836}
 --- !u!1 &8557528701803416326
 GameObject:
   m_ObjectHideFlags: 0
