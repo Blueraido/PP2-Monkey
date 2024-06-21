@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 7780020854916717176}
   damage: 1
-  speed: 3
+  speed: 4
   destroyTime: 2
   hitEffect: {fileID: 1092222898296383152, guid: ddfe15dfcaa852a43850f73323c09817, type: 3}
   arc: 2
