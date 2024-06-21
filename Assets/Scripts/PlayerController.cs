@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] Camera cam;
 
     [SerializeField] int HP;
+    [SerializeField] int Stamina;
     [SerializeField] float shootSpeed;
     [SerializeField] Projectile projectile;
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour, IDamage
     int selectedWeapon;
     bool isShooting;
     int HpOriginal;
+    int StaminaOriginal;
 
     public static PlayerController instance;
 
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour, IDamage
         instance = this;
         AddWeapon(projectile);
         HpOriginal = HP;
+        StaminaOriginal = Stamina;
         UpdateUI();
 
     }
@@ -61,6 +64,8 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / HpOriginal;
         GameManager.instance.playerHealthValueText.text = HP.ToString() + " / " + HpOriginal.ToString();
+        GameManager.instance.playerStaminaBar.fillAmount = (float)Stamina / StaminaOriginal;
+        GameManager.instance.playerStaminaValueText.text = Stamina.ToString() + " / " + StaminaOriginal.ToString();
 
     }
     public void AddWeapon(Projectile weap)
