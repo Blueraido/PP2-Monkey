@@ -18,9 +18,15 @@ public class GameManager : MonoBehaviour
     // Hud element processing
     [SerializeField] public Image playerHPBar;
     [SerializeField] public Image playerStaminaBar;
+    [SerializeField] public Image playerExpBar;
+
     //Health and Stamina Bar text processing
     [SerializeField] public TMP_Text playerHealthValueText;
     [SerializeField] public TMP_Text playerStaminaValueText;
+
+    // Exp and level text processing
+    [SerializeField] public TMP_Text playerExpValueText;
+    [SerializeField] public TMP_Text playerLevelValueText;
 
     // Pause menu processing
     bool isPaused;

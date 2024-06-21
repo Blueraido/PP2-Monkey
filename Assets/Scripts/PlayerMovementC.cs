@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementC : MonoBehaviour
+public class PlayerMovementC : MonoBehaviour, IDamage
 {
     [SerializeField] float jumpSpeed;
     [SerializeField] int numOfJumps;
@@ -48,6 +48,10 @@ public class PlayerMovementC : MonoBehaviour
         }
 
         speedCheck();
+    }
+    public void takeDamage(int damage)
+    {
+        PlayerController.instance.takeDamage(damage);
     }
 
     private void FixedUpdate()

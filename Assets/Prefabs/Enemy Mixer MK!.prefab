@@ -58,6 +58,7 @@ MonoBehaviour:
   rangedAttackRange: 20
   meleeAttackRange: 1
   HP: 5
+  Exp: 15
   isAttacking: 0
   playerInSightRange: 0
   playerInMeleeRange: 0

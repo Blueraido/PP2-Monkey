@@ -49,4 +49,15 @@ public class Projectile : MonoBehaviour
 
     }
 
+    void GetWeaponStats(WeaponStats weap)
+    {
+       
+        damage = weap.damage; 
+        speed = weap.speed;
+        destroyTime = weap.destroyTime;
+        hitEffect = weap.HitEffect;
+        arc = weap.arc; 
+    }
+
+
 }

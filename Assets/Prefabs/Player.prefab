@@ -469,7 +469,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniMap Camera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5885777999397815181, guid: b6409dc8224ec3e498a0d680159e83c5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
