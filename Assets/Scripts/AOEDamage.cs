@@ -5,16 +5,18 @@ using UnityEngine;
 public class ParticleDamage : MonoBehaviour
 {
     [SerializeField] int AOEDamage;
-    [SerializeField] SphereCollider AOECollider;
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        IDamage damage = collision.gameObject.GetComponent<IDamage>();
+        if (other.isTrigger)
+            return;
+
+        IDamage damage = other.gameObject.GetComponent<IDamage>();
         if (damage != null)
         {
             damage.takeDamage(AOEDamage);
             Destroy(this);
         }
     }
-
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7031884450667164141}
   - component: {fileID: -7853806378301883482}
   - component: {fileID: 6825935124889652152}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MonkeyProjectileEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
