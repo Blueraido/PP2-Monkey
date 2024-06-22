@@ -54,6 +54,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (!ExpManager.instance.enabled)
+        {
+            ExpManager.instance.enabled = true; // I have no earthly idea why this is necessary but so be it
+            ExpManager.instance.UpdateUI();
+        }
+
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null) // Pauses the game when cancel is pressed and current active menu is null
@@ -126,8 +132,6 @@ public class GameManager : MonoBehaviour
 
     public void updateLose() // Lose menu processing
     {
-        // menuProcess(menuLose);
-        // This should fix a menu processing bug where loss state doesn't pop when HP is set below zero
         menuProcess(menuLose);
     }
 

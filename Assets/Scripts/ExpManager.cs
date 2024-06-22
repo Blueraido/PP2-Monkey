@@ -13,7 +13,7 @@ public class ExpManager : MonoBehaviour
     // Player's level and exp, public for now but should prob have getters and setters for security
     public int playerExp = 0;
     public int playerLevel = 0;
-    [SerializeField] int expForNextLevel = 40; // Increases by itself / 2 every level up
+    [SerializeField] int expForNextLevel; // Increases by itself / 2 every level up
     int baseExpForNextLevel;
 
 
@@ -117,7 +117,7 @@ public class ExpManager : MonoBehaviour
         GameManager.instance.updateLevelUp(); // Displays level up menu
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         GameManager.instance.playerExpBar.fillAmount = (float)playerExp / expForNextLevel;
         GameManager.instance.playerExpValueText.text = playerExp.ToString() + "  /  " + expForNextLevel.ToString() + " exp";
