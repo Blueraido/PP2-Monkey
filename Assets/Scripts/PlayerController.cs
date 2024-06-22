@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour, IDamage
     void Start()
     {
         instance = this;
-        AddWeapon(projectile);
+        WeapList.Add(projectile);
         HpOriginal = HP;
         StaminaOriginal = Stamina;
         UpdateUI();
@@ -68,9 +68,6 @@ public class PlayerController : MonoBehaviour, IDamage
         GameManager.instance.playerStaminaValueText.text = Stamina.ToString() + " / " + StaminaOriginal.ToString();
 
     }
-    public void AddWeapon(Projectile weap)
-    {
-        WeapList.Add(weap);
-    }
+
 }
 

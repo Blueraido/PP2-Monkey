@@ -12,6 +12,16 @@ public class Projectile : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     [SerializeField] float arc;
 
+
+    Projectile(WeaponStats weap)
+    {
+        damage = weap.damage;
+        speed = weap.speed;
+        destroyTime = weap.destroyTime;
+        hitEffect = weap.HitEffect;
+        arc = weap.arc;
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -52,11 +62,8 @@ public class Projectile : MonoBehaviour
     void GetWeaponStats(WeaponStats weap)
     {
        
-        damage = weap.damage; 
-        speed = weap.speed;
-        destroyTime = weap.destroyTime;
-        hitEffect = weap.HitEffect;
-        arc = weap.arc; 
+        Projectile Object = new Projectile(weap);
+        GameManager.instance.playerScript.WeapList.Add(Object);
     }
 
 
