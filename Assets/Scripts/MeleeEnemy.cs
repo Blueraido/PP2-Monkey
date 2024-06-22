@@ -5,16 +5,16 @@ using UnityEngine;
 public class MeleeEnemy : EnemyAI
 {
     [SerializeField] int meleeDamage;
-
     [SerializeField] int attackInterval;
     [SerializeField] Transform attackPosition;
 
 
 
-    public override IEnumerator attack()
+    protected override IEnumerator attack()
     {
         isAttacking = true;
         anim.SetTrigger("Melee Attack");
+#if false
         if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= meleeAttackRange )
         {
             RaycastHit hit;
@@ -26,7 +26,7 @@ public class MeleeEnemy : EnemyAI
             }
 
         }
-
+#endif 
         yield return new WaitForSeconds(attackInterval);
         
         isAttacking = false;

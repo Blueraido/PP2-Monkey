@@ -5,34 +5,38 @@ using UnityEngine.AI;
 
 public abstract class EnemyAI : MonoBehaviour, IDamage
 {
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] public Animator anim;
     [SerializeField] Renderer model;
+    [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected Animator anim;
+    [SerializeField] Transform headPos;
     [SerializeField] int animTransSpeed;
 
+    [SerializeField] int HP;
     [SerializeField] int sightRange;
+    [SerializeField] int facePlayer;
     [SerializeField] int faceTargetSpeed;
-    [SerializeField] int rotateTowardTarget;
+    [SerializeField] int viewAngle;
+    [SerializeField] int roamDist;
+    [SerializeField] int roamTimer;
+#if false
     [SerializeField] public int rangedAttackRange;
     [SerializeField] public int meleeAttackRange;
+#endif
+    [SerializeField] float shootRate;
+    [SerializeField] int shootAngle;
 
-    [SerializeField] int HP;
-    [SerializeField] int Exp;
-
-    public bool isAttacking;
-    public bool playerInSightRange;
-
+    protected bool isAttacking;
+    protected bool playerInSightRange;
+    protected bool destChosen;
+#if false
     public bool playerInMeleeRange;
     public bool playerInRangedAttackRange;
-
-    Vector3 playerDir;
-
-#if false
-    // Patrolling
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange; 
 #endif
+    Vector3 playerDir;
+    protected Vector3 startingPos;
+
+    protected float angleToPlayer;
+    protected float stoppingDistanceOrig;
     
 
     // Start is called before the first frame update
@@ -44,45 +48,75 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     public virtual void Update()
     {
-        anim.SetFloat("Blend", agent.velocity.normalized.magnitude);
-        // Get the direction of the player
-        playerDir = GameManager.instance.player.transform.position - transform.position;
+        float agentSpeed = agent.velocity.normalized.magnitude;
+        
+        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agentSpeed, Time.deltaTime * animTransSpeed));
 
-        if (playerInSightRange)
-        {
-            agent.SetDestination(GameManager.instance.player.transform.position);
+        if (playerInSightRange && playerSighted())
+            StartCoroutine(roam());
 
-            if (agent.remainingDistance < agent.stoppingDistance)
-            {
-                faceTarget();
-            }
-
-            if (!isAttacking)
-            {
-                StartCoroutine(attack());
-            }
-        }
-
-        float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
-        playerInMeleeRange = distanceToPlayer <= meleeAttackRange;
-        playerInRangedAttackRange = distanceToPlayer <= rangedAttackRange;
-#if false
-        if (!playerInSightRange && !playerInAttackRange)
-            patrolling();
-        else if (playerInSightRange && !playerInAttackRange)
-            chasePlayer();
-        /*else if (playerInSightRange && playerInAttackRange)
-            attackPlayer();*/ 
-#endif
+        else if (!playerInSightRange)
+            StartCoroutine(roam());
+        
     }
 
-    public virtual void faceTarget()
+    protected void circlePlayer()
+    {
+        //int enemyAngle = 0;
+
+    }
+
+    protected IEnumerator roam()
+    {
+        if (!destChosen && agent.remainingDistance < 0.05)
+        {
+            destChosen = true;
+            yield return new WaitForSeconds(roamTimer);
+
+            agent.stoppingDistance = 0;
+            Vector3 randomPos = Random.insideUnitSphere * roamDist;
+            randomPos += startingPos;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
+            agent.SetDestination(hit.position);
+            destChosen = false;
+        }
+    }
+
+    protected bool playerSighted()
+    {
+        // Get the direction of the player and the angle relative to LOS
+        playerDir = Camera.main.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(Camera.main.transform.position - headPos.position, transform.forward);
+
+        Debug.DrawRay(headPos.position, Camera.main.transform.position - headPos.position);
+        RaycastHit hit;
+
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            {
+                agent.SetDestination(GameManager.instance.player.transform.position);
+
+                if (agent.remainingDistance < agent.stoppingDistance)
+                    faceTarget();
+
+                if (!isAttacking && angleToPlayer <= shootAngle)
+                    StartCoroutine(attack());
+
+                return true;
+;           }
+
+        }
+        agent.stoppingDistance = stoppingDistanceOrig;
+        return false;
+    }
+    protected virtual void faceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
-
-
 
     public virtual void takeDamage(int amount)
     {
@@ -97,79 +131,26 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    public virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInSightRange = true;
     }
 
-    public virtual void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInSightRange = false;
     }
 
-
-#if false
-    void patrolling()
-    {
-        if (!walkPointSet)
-            searchWalkPoint();
-        else if (walkPointSet)
-            agent.SetDestination(walkPoint);
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        // When walk point is reached
-        if (distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
-    } 
-
-
-    void searchWalkPoint()
-    {
-        float randomZPoint = Random.Range(-walkPointRange, walkPointRange);
-        float randomXPoint = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomXPoint, transform.position.y, transform.position.z + randomZPoint);
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, IsGround))
-            walkPointSet = true;
-
-
-    }
-
-    void chasePlayer()
-    {
-        agent.SetDestination(player.transform.position);
-    }
-
-
-    void attackPlayer()
-    {
-        agent.SetDestination(transform.position);
-        transform.LookAt(player.transform);
-
-        if (!hasAttacked)
-        {
-            hasAttacked = true;
-            Invoke(nameof(resetAttack), attackInterval);
-        }
-    }
-
-    void resetAttack()
-    {
-        hasAttacked = false;
-    }
-#endif
-
-    public virtual IEnumerator flashDamage()
+    protected virtual IEnumerator flashDamage()
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(1.0f);
         model.material.color = Color.white;
     }
 
-    public abstract IEnumerator attack();
+    protected abstract IEnumerator attack();
 
     void OnDrawGizmos()
     {
@@ -181,9 +162,3 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
 
 }
 
-#if false
-isAttacking = true;
-Instantiate(meleeStrikePoint, attackPostion.position, transform.rotation);
-yield return new WaitForSeconds(attackInterval);
-isAttacking = false;
-#endif
