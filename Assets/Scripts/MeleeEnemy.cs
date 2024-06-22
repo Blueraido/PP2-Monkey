@@ -5,16 +5,25 @@ using UnityEngine;
 public class MeleeEnemy : EnemyAI
 {
     [SerializeField] int meleeDamage;
-    [SerializeField] int attackInterval;
+    [SerializeField] int meleeRange;
+
     [SerializeField] Transform attackPosition1;
     [SerializeField] Transform attackPosition2;
+
+    [SerializeField] Collider fistLeft;
+    [SerializeField] Collider fistRight;
 
 
 
     protected override IEnumerator attack()
     {
         isAttacking = true;
-        anim.SetTrigger("Melee Attack");
+
+        if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= meleeRange)
+        {
+            fistLeftColliderOn(fistLeft);
+            anim.SetTrigger("Throw");
+        }
 #if false
         if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= meleeAttackRange )
         {
@@ -28,9 +37,28 @@ public class MeleeEnemy : EnemyAI
 
         }
 #endif 
-        yield return new WaitForSeconds(attackInterval);
+        yield return new WaitForSeconds(attackRate);
         
         isAttacking = false;
     }
 
+    public void fistLeftColliderOn(Collider other)
+    {
+        fistLeft.enabled = true;
+    }
+
+    public void fistLeftColliderOff(Collider other)
+    {
+        fistLeft.enabled = false;
+    }
+
+    public void fistRightColliderOn(Collider other)
+    {
+        fistRight.enabled = true;
+    }
+
+    public void fightRight(Collider other)
+    {
+        fistRight.enabled = false;
+    }
 }

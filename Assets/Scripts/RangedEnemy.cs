@@ -7,7 +7,6 @@ public class RangedEnemy : EnemyAI
 {
     [SerializeField] GameObject projectile;
     [SerializeField] Transform attackPosition;
-    [SerializeField] int attackInterval;
 
     public override void Start()
     {
@@ -21,8 +20,14 @@ public class RangedEnemy : EnemyAI
         anim.SetTrigger("Throw");
 
         // Attack the player 
-        Instantiate(projectile, attackPosition.position, transform.rotation);
-        yield return new WaitForSeconds(attackInterval);
+        // createProjectile();
+
+        yield return new WaitForSeconds(attackRate);
         isAttacking = false;
+    }
+
+    public void createProjectile()
+    {
+        Instantiate(projectile, attackPosition.position, transform.rotation);
     }
 }

@@ -12,27 +12,21 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int animTransSpeed;
 
     [SerializeField] int HP;
-    [SerializeField] protected int Exp;
+    [SerializeField] public int Exp;
     [SerializeField] int sightRange;
     [SerializeField] int facePlayer;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int viewAngle;
     [SerializeField] int roamDist;
     [SerializeField] int roamTimer;
-#if false
-    [SerializeField] public int rangedAttackRange;
-    [SerializeField] public int meleeAttackRange;
-#endif
-    [SerializeField] float shootRate;
-    [SerializeField] int shootAngle;
+
+    [SerializeField] protected float attackRate;
+    [SerializeField] protected int attackAngle;
 
     protected bool isAttacking;
     protected bool playerInSightRange;
     protected bool destChosen;
-#if false
-    public bool playerInMeleeRange;
-    public bool playerInRangedAttackRange;
-#endif
+
     Vector3 playerDir;
     protected Vector3 startingPos;
 
@@ -102,7 +96,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
                 if (agent.remainingDistance < agent.stoppingDistance)
                     faceTarget();
 
-                if (!isAttacking && angleToPlayer <= shootAngle)
+                if (!isAttacking && angleToPlayer <= attackAngle)
                     StartCoroutine(attack());
 
                 return true;
