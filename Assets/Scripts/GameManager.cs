@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     // Player script reference:
     public PlayerController playerScript;
 
+    // Projectile reference
+    public Projectile projectileScript;
+
     // Hud element processing
     [SerializeField] public Image playerHPBar;
     [SerializeField] public Image playerStaminaBar;

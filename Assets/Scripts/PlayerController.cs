@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int Stamina;
     [SerializeField] float shootSpeed;
     [SerializeField] Projectile projectile;
+    [SerializeField] GameObject Weapmodel;
 
     public List<Projectile> WeapList = new List<Projectile>();
 
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isShooting;
     int HpOriginal;
     int StaminaOriginal;
+    int selectedWeap;
 
     public static PlayerController instance;
 
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         instance = this;
         WeapList.Add(projectile);
+        selectedWeap = WeapList.Count - 1;
         HpOriginal = HP;
         StaminaOriginal = Stamina;
         UpdateUI();
@@ -69,5 +72,27 @@ public class PlayerController : MonoBehaviour, IDamage
 
     }
 
+    void SeclectWeap()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeap < WeapList.Count - 1)
+        {
+            selectedWeap++;
+            changeWeap();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedWeap > 0)
+        {
+            selectedWeap--;
+            changeWeap();   
+        }
+    }
+
+    void changeWeap()
+    {
+        UpdateUI();
+        projectile = WeapList[selectedWeap];
+
+        Weapmodel.GetComponent<MeshFilter>().sharedMesh = WeapList[selectedWeap].Weapmodel.GetComponent<MeshFilter>().sharedMesh;
+        Weapmodel.GetComponent<MeshRenderer>().sharedMaterial = WeapList[selectedWeap].Weapmodel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
 }
 

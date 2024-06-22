@@ -7,7 +7,7 @@ using UnityEngine;
 public class WeaponStats : ScriptableObject
 {
 
-    public GameObject model;
+    public GameObject Weapmodel;
 
     [Range(1, 50)] public int damage;
     [Range(1, 15)] public int speed;

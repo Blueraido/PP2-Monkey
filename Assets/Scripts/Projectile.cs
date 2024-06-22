@@ -6,15 +6,18 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] Rigidbody body;
 
+    public GameObject Weapmodel;
     [SerializeField] int damage;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
     [SerializeField] GameObject hitEffect;
     [SerializeField] float arc;
 
+    public static Projectile instance;
 
     Projectile(WeaponStats weap)
     {
+        Weapmodel = weap.Weapmodel;
         damage = weap.damage;
         speed = weap.speed;
         destroyTime = weap.destroyTime;
@@ -59,11 +62,12 @@ public class Projectile : MonoBehaviour
 
     }
 
-    void GetWeaponStats(WeaponStats weap)
+    public void GetWeaponStats(WeaponStats weap)
     {
        
         Projectile Object = new Projectile(weap);
         GameManager.instance.playerScript.WeapList.Add(Object);
+
     }
 
 
