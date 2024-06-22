@@ -61,10 +61,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
         
     }
 
-    protected void circlePlayer()
+    protected IEnumerator circlePlayer()
     {
-        //int enemyAngle = 0;
-
+        yield return null;
     }
 
     protected IEnumerator roam()
