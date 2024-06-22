@@ -53,7 +53,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
         
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agentSpeed, Time.deltaTime * animTransSpeed));
 
-        if (playerInSightRange && playerSighted())
+        if (playerInSightRange && playerSighted() == true)
             StartCoroutine(roam());
 
         else if (!playerInSightRange)
@@ -68,7 +68,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
 
     protected IEnumerator roam()
     {
-        if (!destChosen && agent.remainingDistance < 0.05)
+        if (!destChosen && agent.remainingDistance < 5)
         {
             destChosen = true;
             yield return new WaitForSeconds(roamTimer);
@@ -112,7 +112,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
         agent.stoppingDistance = stoppingDistanceOrig;
         return false;
     }
-    protected virtual void faceTarget()
+    protected void faceTarget()
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);

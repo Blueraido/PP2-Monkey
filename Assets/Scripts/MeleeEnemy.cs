@@ -6,7 +6,8 @@ public class MeleeEnemy : EnemyAI
 {
     [SerializeField] int meleeDamage;
     [SerializeField] int attackInterval;
-    [SerializeField] Transform attackPosition;
+    [SerializeField] Transform attackPosition1;
+    [SerializeField] Transform attackPosition2;
 
 
 
