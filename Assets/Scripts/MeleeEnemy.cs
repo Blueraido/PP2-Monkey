@@ -13,35 +13,31 @@ public class MeleeEnemy : EnemyAI
     [SerializeField] Collider fistLeft;
     [SerializeField] Collider fistRight;
 
+    bool playerInMeleeRange;
 
-
-    protected override IEnumerator attack()
+    public override IEnumerator attack()
     {
         isAttacking = true;
 
-        if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= meleeRange)
-        {
-            fistLeftColliderOn(fistLeft);
-            anim.SetTrigger("Throw");
-        }
-#if false
-        if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) <= meleeAttackRange )
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(attackPosition.transform.position, attackPosition.transform.forward, out hit, meleeAttackRange))
-            {
-                IDamage dmg = hit.collider.GetComponent<IDamage>();
-                if (hit.transform != transform && dmg != null)
-                    dmg.takeDamage(meleeAttackRange);
-            }
+        if (playerInSightRange && agent.remainingDistance <= meleeRange)
+            anim.SetTrigger("Melee");
 
-        }
-#endif 
+        melee();
+
         yield return new WaitForSeconds(attackRate);
-        
         isAttacking = false;
     }
 
+    public void melee()
+    {
+        fistLeftColliderOn(fistLeft);
+        fistRightColliderOn(fistRight);
+
+        GameManager.instance.player.GetComponent<IDamage>().takeDamage(meleeDamage);
+
+        fistLeftColliderOff(fistLeft);
+        fistRightColliderOff(fistRight);
+    }
     public void fistLeftColliderOn(Collider other)
     {
         fistLeft.enabled = true;
@@ -57,7 +53,7 @@ public class MeleeEnemy : EnemyAI
         fistRight.enabled = true;
     }
 
-    public void fightRight(Collider other)
+    public void fistRightColliderOff(Collider other)
     {
         fistRight.enabled = false;
     }
