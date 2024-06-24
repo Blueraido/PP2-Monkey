@@ -2619,10 +2619,10 @@ MonoBehaviour:
   viewAngle: 60
   roamDist: 15
   roamTimer: 2
-  attackRate: 5
+  attackRate: 1
   attackAngle: 25
-  meleeDamage: 5
-  meleeRange: 5
+  meleeDamage: 2
+  meleeRange: 8
   attackPosition1: {fileID: 3029500018078242418}
   attackPosition2: {fileID: 2720481047080837237}
   fistLeft: {fileID: 3584358789497716693}
@@ -2637,7 +2637,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 18
+  m_Speed: 21
   m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 600

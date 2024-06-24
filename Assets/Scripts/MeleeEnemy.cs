@@ -17,7 +17,7 @@ public class MeleeEnemy : EnemyAI
     bool fistLeftActive;
     bool fistRightActive;
 
-    public override IEnumerator attack()
+    protected override IEnumerator attack()
     {
         isAttacking = true;
 
@@ -59,11 +59,14 @@ public class MeleeEnemy : EnemyAI
 
     protected void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player") && collision.collider is CapsuleCollider)
         {
+            
             IDamage playerDamage = collision.gameObject.GetComponent<IDamage>();
 
-            if (playerDamage != null && (fistLeftActive || fistRightActive))
+            if (playerDamage != null && 
+                ((fistLeftActive && collision.contacts[0].thisCollider == fistLeft) || 
+                (fistRightActive && collision.contacts[0].thisCollider == fistRight)))
                 playerDamage.takeDamage(meleeDamage);
         }
     }

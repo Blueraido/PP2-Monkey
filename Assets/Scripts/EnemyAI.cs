@@ -26,39 +26,35 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     protected bool isAttacking;
     protected bool playerInSightRange;
     protected bool destChosen;
-    protected bool isRoaming;
 
-    protected Vector3 playerDir;
+    Vector3 playerDir;
     protected Vector3 startingPos;
 
     protected float angleToPlayer;
-    protected float distanceToPlayer;
     protected float stoppingDistanceOrig;
 
 
 
 
     // Start is called before the first frame update
-    protected void Start()
+    public virtual void Start()
     {
-        startingPos = transform.position;
-        stoppingDistanceOrig = agent.stoppingDistance;
+        GameManager.instance.updateGoalEnemy(1);
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
         float agentSpeed = agent.velocity.normalized.magnitude;
+        
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agentSpeed, Time.deltaTime * animTransSpeed));
 
-        if (playerInSightRange && playerSighted() || !playerInSightRange)
-        {
-            if (!isRoaming)
-            {
-                isRoaming = true;
-                StartCoroutine(roam());
-            }
-        }
+        if (playerInSightRange && playerSighted() == true)
+            StartCoroutine(roam());
+
+        else if (!playerInSightRange)
+            StartCoroutine(roam());
+        
     }
 
     protected IEnumerator circlePlayer()
@@ -79,11 +75,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
             NavMeshHit hit;
             NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
             agent.SetDestination(hit.position);
-
-            yield return new WaitUntil(() => agent.remainingDistance < 0.1f);
             destChosen = false;
         }
-        isRoaming = false;
     }
 
     protected bool playerSighted()
@@ -150,7 +143,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
         model.material.color = Color.white;
     }
 
-    public abstract IEnumerator attack();
+    protected abstract IEnumerator attack();
 
     void OnDrawGizmos()
     {
