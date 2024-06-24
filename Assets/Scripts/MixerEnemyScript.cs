@@ -27,7 +27,7 @@ public class MixerEnemyScript : EnemyAI
             StartCoroutine(attack());
         }
     }
-    public override IEnumerator attack()
+    protected override IEnumerator attack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
 
