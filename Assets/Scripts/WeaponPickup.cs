@@ -10,7 +10,7 @@ public class WeaponPickup : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) {
-            GameManager.instance.projectileScript.GetWeaponStats(weap);
+            GameManager.instance.playerScript.GetWeaponStats(weap);
             Destroy(gameObject);
         
         }

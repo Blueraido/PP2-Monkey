@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9666794667937605}
   - component: {fileID: 4395313294196070268}
   - component: {fileID: 5409991790142991966}
-  - component: {fileID: 8045794136073170333}
+  - component: {fileID: -414417957641989214}
   m_Layer: 7
   m_Name: WaterBalloon
   m_TagString: Untagged
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &8045794136073170333
+--- !u!114 &-414417957641989214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,12 +143,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3920310190469411937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a4d618c1713604bbde3d7687745912, type: 3}
+  m_Script: {fileID: 11500000, guid: ad9790c1a509a9b4093206fb9909e6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 5409991790142991966}
-  damage: 1
-  speed: 20
+  Weapmodel: {fileID: 0}
+  damage: 10
+  speed: 10
   destroyTime: 10
-  hitEffect: {fileID: 1092222898296383152, guid: 79319bd141ed8a14f85fed63c7c78ba5, type: 3}
-  arc: 0
+  hitEffect: {fileID: 0}
+  arc: 1

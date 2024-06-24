@@ -11,16 +11,21 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int HP;
     [SerializeField] int Stamina;
     [SerializeField] float shootSpeed;
-    [SerializeField] Projectile projectile;
+    [SerializeField] PlayerProjectile projectile;
+    [SerializeField] WeaponStats defaultWeap;
     [SerializeField] GameObject Weapmodel;
+    [SerializeField] GameObject hitFanfare;
+    public List<WeaponStats> WeapList = new List<WeaponStats>();
 
-    public List<Projectile> WeapList = new List<Projectile>();
-
+    public int destroyTime;
+    public float arc;
     int selectedWeapon;
     bool isShooting;
     int HpOriginal;
     int StaminaOriginal;
     int selectedWeap;
+    float projectileSpeed;
+    int shootDamage;
 
     public static PlayerController instance;
 
@@ -28,8 +33,7 @@ public class PlayerController : MonoBehaviour, IDamage
     void Start()
     {
         instance = this;
-        WeapList.Add(projectile);
-        selectedWeap = WeapList.Count - 1;
+        GetWeaponStats(defaultWeap);
         HpOriginal = HP;
         StaminaOriginal = Stamina;
         UpdateUI();
@@ -43,8 +47,9 @@ public class PlayerController : MonoBehaviour, IDamage
         if (Input.GetButton("Fire1") && !isShooting)
             StartCoroutine(shoot());
 
-        
+         SelectWeap();
     }
+
 
 
     IEnumerator shoot()
@@ -72,7 +77,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     }
 
-    void SeclectWeap()
+    void SelectWeap()
     {
         if(Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeap < WeapList.Count - 1)
         {
@@ -89,10 +94,32 @@ public class PlayerController : MonoBehaviour, IDamage
     void changeWeap()
     {
         UpdateUI();
-        projectile = WeapList[selectedWeap];
-
+        shootDamage = WeapList[selectedWeap].damage;
+        shootSpeed = WeapList[selectedWeap].speed;
+        projectileSpeed = WeapList[selectedWeap].ProjectileSpeed;
+        projectile = WeapList[selectedWeap].projectile;
+        hitFanfare = WeapList[selectedWeap].HitEffect;
+        destroyTime = WeapList[selectedWeap].destroyTime;
+        arc = WeapList[selectedWeap].arc;
         Weapmodel.GetComponent<MeshFilter>().sharedMesh = WeapList[selectedWeap].Weapmodel.GetComponent<MeshFilter>().sharedMesh;
         Weapmodel.GetComponent<MeshRenderer>().sharedMaterial = WeapList[selectedWeap].Weapmodel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    public void GetWeaponStats(WeaponStats weap)
+    {
+
+        WeapList.Add(weap);
+        selectedWeap = WeapList.Count - 1;
+        changeWeap();
+
+    }
+    public WeaponStats GetSelectedWeapon()
+    {
+        return WeapList[selectedWeapon];
+    }
+    public GameObject getFanfare()
+    {
+        return hitFanfare;
     }
 }
 

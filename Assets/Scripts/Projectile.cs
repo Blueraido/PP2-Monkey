@@ -15,16 +15,6 @@ public class Projectile : MonoBehaviour
 
     public static Projectile instance;
 
-    Projectile(WeaponStats weap)
-    {
-        Weapmodel = weap.Weapmodel;
-        damage = weap.damage;
-        speed = weap.speed;
-        destroyTime = weap.destroyTime;
-        hitEffect = weap.HitEffect;
-        arc = weap.arc;
-
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -59,14 +49,6 @@ public class Projectile : MonoBehaviour
     void hitFanfare()
     {
         Instantiate(hitEffect, transform.position, transform.rotation);
-
-    }
-
-    public void GetWeaponStats(WeaponStats weap)
-    {
-       
-        Projectile Object = new Projectile(weap);
-        GameManager.instance.playerScript.WeapList.Add(Object);
 
     }
 
