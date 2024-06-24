@@ -35,8 +35,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     protected float distanceToPlayer;
     protected float stoppingDistanceOrig;
 
-    
-    
+
+
 
     // Start is called before the first frame update
     protected void Start()
@@ -74,7 +74,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
             yield return new WaitForSeconds(roamTimer);
 
             agent.stoppingDistance = 0;
-            Vector3 randomPos = Random.insideUnitSphere * roamDist +startingPos;
+            Vector3 randomPos = Random.insideUnitSphere * roamDist + startingPos;
 
             NavMeshHit hit;
             NavMesh.SamplePosition(randomPos, out hit, roamDist, 1);
@@ -101,14 +101,12 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
             {
                 agent.SetDestination(GameManager.instance.player.transform.position);
 
-                if (agent.remainingDistance < agent.stoppingDistance)
-                    faceTarget();
+                if (agent.remainingDistance < agent.stoppingDistance) faceTarget();
 
-                if (!isAttacking && angleToPlayer <= attackAngle)
-                    StartCoroutine(attack());
+                if (!isAttacking && angleToPlayer <= attackAngle) StartCoroutine(attack());
 
                 return true;
-;           }
+            }
 
         }
         agent.stoppingDistance = stoppingDistanceOrig;

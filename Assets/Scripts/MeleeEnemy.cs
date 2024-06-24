@@ -14,15 +14,14 @@ public class MeleeEnemy : EnemyAI
     [SerializeField] Collider fistRight;
 
     bool playerInMeleeRange;
+    bool fistLeftActive;
+    bool fistRightActive;
 
     public override IEnumerator attack()
     {
         isAttacking = true;
 
-        if (playerInSightRange && agent.remainingDistance <= meleeRange)
-            anim.SetTrigger("Melee");
-
-        melee();
+        if (playerInSightRange && agent.remainingDistance < meleeRange) anim.SetTrigger("Melee");
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
@@ -56,5 +55,16 @@ public class MeleeEnemy : EnemyAI
     public void fistRightColliderOff(Collider other)
     {
         fistRight.enabled = false;
+    }
+
+    protected void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            IDamage playerDamage = collision.gameObject.GetComponent<IDamage>();
+
+            if (playerDamage != null && (fistLeftActive || fistRightActive))
+                playerDamage.takeDamage(meleeDamage);
+        }
     }
 }
