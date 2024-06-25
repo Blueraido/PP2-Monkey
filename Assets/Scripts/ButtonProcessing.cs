@@ -57,7 +57,8 @@ public class ButtonProcessing : MonoBehaviour
     }
     public void expButtonStamina()
     {
-        GameManager.instance.playerScript.AddStamina(5);
+        GameManager.instance.playerScript.AddStaminaMax(5);
+        GameManager.instance.playerScript.AddStamina(GameManager.instance.playerScript.GetStaminaMax());
         fullHeal();
         GameManager.instance.menuProcess();
         Debug.Log("Stamina Increased!");

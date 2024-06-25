@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3164594518268900988}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Player
+  m_TagString: PlayerMovement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   HP: 10
   Stamina: 10
   shootSpeed: 1
-  projectile: {fileID: 0}
+  projectile: {fileID: 8045794136073170333, guid: c80d2c60d4a9f974ca22ebd021dca9d2, type: 3}
   defaultWeap: {fileID: 11400000, guid: ccc30e1241ff7fa42b5e37e8524ec6cf, type: 2}
   Weapmodel: {fileID: 0}
   hitFanfare: {fileID: 0}
