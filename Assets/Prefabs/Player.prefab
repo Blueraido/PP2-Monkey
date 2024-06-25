@@ -414,10 +414,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player MiniMap Icon
       objectReference: {fileID: 0}
-    - target: {fileID: 8601403953162278694, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
