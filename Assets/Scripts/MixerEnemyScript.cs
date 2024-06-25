@@ -1,73 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MixerEnemyScript : EnemyAI
 {
     [SerializeField] GameObject projectile;
     
-    [SerializeField] int rangedAttackInterval;
-    [SerializeField] int rangedAttackDamage;
-    [SerializeField] int rangedAttackRange;
+    [SerializeField] int throwDamage;
+    [SerializeField] int throwRange;
+   
+    [SerializeField] int meleeDamage;
+    [SerializeField] int meleeRange;
+     
+    [SerializeField] Collider fistLeft;
+    [SerializeField] Collider fistRight;
     [SerializeField] Transform rangedAttackPos;
 
-    [SerializeField] int meleeAttackInterval;
-    [SerializeField] int meleeAttackDamage;
-    [SerializeField] int meleeAttackRange;
-    [SerializeField] Transform meleeAttackPos;
-   
+    bool fistLeftActive;
+    bool fistRightActive;
 
-    public override void Update()
-    {
-        base.Update(); // Call the base class Update
-
-        // Check if the enemy should attack based on the range
-        if (playerInSightRange && !isAttacking)
-        {
-            StartCoroutine(attack());
-        }
-    }
     protected override IEnumerator attack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
 
-#if false
-        if (distanceToPlayer < meleeAttackRange)
-            playerInMeleeRange = true;
-
-        if (distanceToPlayer < rangedAttackRange)
-            playerInRangedAttackRange = true;
-#endif 
-
         isAttacking = true;
 
-#if false
-        if (playerInRangedAttackRange && !playerInMeleeRange)
+        if (distanceToPlayer <= meleeRange)
         {
-            playerInMeleeRange = false;
-            anim.SetTrigger("Ranged Attack");
-            Instantiate(projectile, rangedAttackPos.position, transform.rotation);
-
-            yield return new WaitForSeconds(rangedAttackInterval);
+            meleeAttack();
         }
-        
-        if (playerInMeleeRange && playerInRangedAttackRange)
+
+        if (distanceToPlayer <= throwRange)
         {
-            
-            RaycastHit hit;
-            anim.SetTrigger("Melee Attack");
-            if (Physics.Raycast(meleeAttackPos.transform.position, meleeAttackPos.transform.forward, out hit, meleeAttackRange))
-            {
-                IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-                if (hit.transform != transform &&  dmg != null)
-                    dmg.takeDamage(meleeAttackDamage);
-            }
-
-            yield return new WaitForSeconds(meleeAttackInterval);
+            throwAttack();
         }
-        isAttacking = false;
-#endif
-        yield return new WaitForSeconds(meleeAttackInterval);
+        yield return new WaitForSeconds(attackRate);
+    }
+
+    public void meleeAttack()
+    {
+        anim.SetTrigger("Melee");
+    }
+
+    public void throwAttack()
+    {
+        anim.SetTrigger("Throw");
+    }
+
+    public void createProjectile()
+    {
+        Instantiate(projectile, rangedAttackPos.position, transform.rotation);
     }
 }

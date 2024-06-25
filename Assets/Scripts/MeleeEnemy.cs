@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeEnemy : EnemyAI
 {
-    [SerializeField] int meleeDamage;
+    [SerializeField] public int meleeDamage;
     [SerializeField] int meleeRange;
 
     [SerializeField] Transform attackPosition1;
@@ -21,18 +21,26 @@ public class MeleeEnemy : EnemyAI
     {
         isAttacking = true;
 
-        if (playerInSightRange && agent.remainingDistance < meleeRange) anim.SetTrigger("Melee");
+        if (playerInSightRange && agent.remainingDistance < meleeRange)
+        {
+            playerInMeleeRange = true;
+
+            if (playerInMeleeRange)
+            {
+                anim.SetTrigger("Melee"); 
+            }
+        }
+        else
+            playerInMeleeRange = !playerInMeleeRange;
 
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
     }
 
-    public void melee()
+    public void Melee()
     {
         fistLeftColliderOn(fistLeft);
         fistRightColliderOn(fistRight);
-
-        GameManager.instance.player.GetComponent<IDamage>().takeDamage(meleeDamage);
 
         fistLeftColliderOff(fistLeft);
         fistRightColliderOff(fistRight);
@@ -55,19 +63,5 @@ public class MeleeEnemy : EnemyAI
     public void fistRightColliderOff(Collider other)
     {
         fistRight.enabled = false;
-    }
-
-    protected void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Player") && collision.collider is CapsuleCollider)
-        {
-            
-            IDamage playerDamage = collision.gameObject.GetComponent<IDamage>();
-
-            if (playerDamage != null && 
-                ((fistLeftActive && collision.contacts[0].thisCollider == fistLeft) || 
-                (fistRightActive && collision.contacts[0].thisCollider == fistRight)))
-                playerDamage.takeDamage(meleeDamage);
-        }
     }
 }
