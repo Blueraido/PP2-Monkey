@@ -15,7 +15,7 @@ MonoBehaviour:
   Weapmodel: {fileID: 1292728789090316678, guid: c45479cda8750db40bc87627e77fb91c, type: 3}
   damage: 9
   speed: 1
-  ProjectileSpeed: 0
+  ProjectileSpeed: 1
   destroyTime: 10
   projectile: {fileID: -414417957641989214, guid: c80d2c60d4a9f974ca22ebd021dca9d2, type: 3}
   HitEffect: {fileID: 1092222898296383152, guid: 79319bd141ed8a14f85fed63c7c78ba5, type: 3}

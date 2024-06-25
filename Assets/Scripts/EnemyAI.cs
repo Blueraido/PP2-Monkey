@@ -82,10 +82,10 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     protected bool playerSighted()
     {
         // Get the direction of the player and the angle relative to LOS
-        playerDir = Camera.main.transform.position - headPos.position;
-        angleToPlayer = Vector3.Angle(Camera.main.transform.position - headPos.position, transform.forward);
+        playerDir = GameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(GameManager.instance.player.transform.position - headPos.position, transform.forward);
 
-        Debug.DrawRay(headPos.position, Camera.main.transform.position - headPos.position);
+        Debug.DrawRay(headPos.position, GameManager.instance.player.transform.position - headPos.position);
         RaycastHit hit;
 
         if (Physics.Raycast(headPos.position, playerDir, out hit))
