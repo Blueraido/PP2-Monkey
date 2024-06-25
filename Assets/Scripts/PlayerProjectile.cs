@@ -45,7 +45,8 @@ public class PlayerProjectile : MonoBehaviour
 
     void hitFanfare()
     {
-        Instantiate(GameManager.instance.playerScript.getFanfare(), transform.position, transform.rotation);
+        if(GameManager.instance.playerScript.getFanfare()!=null)
+            Instantiate(GameManager.instance.playerScript.getFanfare(), transform.position, transform.rotation);
 
     }
 }

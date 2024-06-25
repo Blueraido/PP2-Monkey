@@ -8086,7 +8086,7 @@ MonoBehaviour:
   - {fileID: 7908259092833527372}
   - {fileID: 7024190780323870467}
   - {fileID: 4761622880157775836}
-  debug: 0
+  debug: 1
 --- !u!1 &8557528701803416326
 GameObject:
   m_ObjectHideFlags: 0

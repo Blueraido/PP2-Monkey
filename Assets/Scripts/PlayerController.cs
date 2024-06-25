@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour, IDamage
     void Update()
     {
  
-        if (Input.GetButton("Fire1") && !isShooting)
+        if (Input.GetButton("Fire1") && !isShooting && !GameManager.instance.isPaused)
             StartCoroutine(shoot());
 
          SelectWeap();
