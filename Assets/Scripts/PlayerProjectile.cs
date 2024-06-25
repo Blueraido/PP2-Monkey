@@ -36,7 +36,7 @@ public class PlayerProjectile : MonoBehaviour
         IDamage dmg = collision.gameObject.GetComponent<IDamage>();
         if (dmg != null)
         {
-            dmg.takeDamage(GameManager.instance.playerScript.GetSelectedWeapon().damage);
+            dmg.takeDamage(GameManager.instance.playerScript.GetSelectedWeapon().damage * GameManager.instance.playerScript.damageMult);
         }
         hitFanfare();
         Destroy(gameObject);

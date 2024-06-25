@@ -39,7 +39,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     public virtual void Start()
     {
-        GameManager.instance.updateGoalEnemy(1);
     }
 
     // Update is called once per frame
@@ -111,9 +110,9 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    public virtual void takeDamage(int amount)
+    public virtual void takeDamage(float amount)
     {
-        HP -= amount;
+        HP -= (int)amount;
         StartCoroutine(flashDamage());
 
         if (HP <= 0)
