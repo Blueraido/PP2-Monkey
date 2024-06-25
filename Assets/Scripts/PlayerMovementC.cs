@@ -50,7 +50,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
 
         speedCheck();
     }
-    public void takeDamage(int damage)
+    public void takeDamage(float damage)
     {
         PlayerController.instance.takeDamage(damage);
     }

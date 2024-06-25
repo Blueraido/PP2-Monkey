@@ -36,7 +36,7 @@ public class ButtonProcessing : MonoBehaviour
     public void expButtonDamage()
     {
         // Still waiting
-        //GameManager.instance.playerScript.AddDamageMult(1.1);
+        GameManager.instance.playerScript.AddDamageMult(0.5f);
         fullHeal();
         GameManager.instance.menuProcess();
         Debug.Log("Damage Increased!");
