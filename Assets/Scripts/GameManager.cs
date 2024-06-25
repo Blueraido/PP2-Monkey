@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     public int enemyCount;
     int splatCount;
 
+    // Toggle Visible UI Elements
+    [SerializeField] Image reticle;
     void Awake()
     {
         instance = this;
@@ -102,6 +104,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
+            reticle.enabled = false;
         }
 
         else if (!isPaused) // Unpauses scene
@@ -109,6 +112,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            reticle.enabled = true;
         }
     }
 
