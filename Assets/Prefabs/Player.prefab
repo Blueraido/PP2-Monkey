@@ -281,13 +281,14 @@ MonoBehaviour:
   HP: 10
   Stamina: 10
   shootSpeed: 1
-  projectile: {fileID: 8045794136073170333, guid: c80d2c60d4a9f974ca22ebd021dca9d2, type: 3}
+  projectile: {fileID: 0}
   defaultWeap: {fileID: 11400000, guid: ccc30e1241ff7fa42b5e37e8524ec6cf, type: 2}
   Weapmodel: {fileID: 0}
   hitFanfare: {fileID: 0}
   WeapList: []
   destroyTime: 0
   arc: 0
+  damageMult: 1
 --- !u!33 &5779571421580162907
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -413,6 +414,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player MiniMap Icon
       objectReference: {fileID: 0}
+    - target: {fileID: 8601403953162278694, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -470,6 +475,10 @@ PrefabInstance:
     - target: {fileID: 4088494807917023015, guid: b6409dc8224ec3e498a0d680159e83c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373357932534787173, guid: b6409dc8224ec3e498a0d680159e83c5, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4105
       objectReference: {fileID: 0}
     - target: {fileID: 7382506543762287944, guid: b6409dc8224ec3e498a0d680159e83c5, type: 3}
       propertyPath: m_Name

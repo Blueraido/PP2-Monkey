@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour, IDamage
     int StaminaOriginal;
     int selectedWeap;
     float projectileSpeed;
-    int shootDamage;
-
+    float shootDamage;
+    public float damageMult;
     public static PlayerController instance;
 
     // Start is called before the first frame update
@@ -58,12 +58,14 @@ public class PlayerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(shootSpeed);
         isShooting = false;
     }
-    public void takeDamage(int amount)
+    public void takeDamage(float amount)
     {
-        HP -= amount;
+        HP -= (int)amount;
         UpdateUI();
         if (HP <= 0)
         {
+            HP = 0;
+            UpdateUI();
             GameManager.instance.updateLose();
         }
     }
@@ -179,6 +181,11 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         UpdateUI();
+    }
+
+    public void AddDamageMult(float add)
+    {
+        damageMult += add;
     }
 }
 

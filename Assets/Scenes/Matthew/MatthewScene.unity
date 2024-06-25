@@ -265,6 +265,10 @@ PrefabInstance:
       value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 7348322314120794212, guid: 521ab46be09624148bfd76ab76036e05, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348322314120794212, guid: 521ab46be09624148bfd76ab76036e05, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -906,6 +910,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 93
+      objectReference: {fileID: 0}
     - target: {fileID: 6863886077754773804, guid: 76905113f3b548841affef5de27bbf25, type: 3}
       propertyPath: m_LocalPosition.x
       value: 39.446087
@@ -1173,7 +1181,7 @@ Transform:
   m_GameObject: {fileID: 1027950558}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 11.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1505,6 +1513,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Immaculate UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6574566281574768772, guid: 5109aad780160ac428b00d78298f614a, type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7852371160083617524, guid: 5109aad780160ac428b00d78298f614a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1730,7 +1742,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.6
+      value: 83.3
       objectReference: {fileID: 0}
     - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2276,25 +2288,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4941356639839168535, guid: 307c9c4530ab2c244b8543f760d1c716, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.89
-      objectReference: {fileID: 0}
     - target: {fileID: 7018510106811337222, guid: 307c9c4530ab2c244b8543f760d1c716, type: 3}
-      propertyPath: Stamina
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7018510106811337222, guid: 307c9c4530ab2c244b8543f760d1c716, type: 3}
-      propertyPath: projectile
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7018510106811337222, guid: 307c9c4530ab2c244b8543f760d1c716, type: 3}
-      propertyPath: defaultWeap
-      value: 
-      objectReference: {fileID: 11400000, guid: ccc30e1241ff7fa42b5e37e8524ec6cf, type: 2}
-    - target: {fileID: 7018510106811337222, guid: 307c9c4530ab2c244b8543f760d1c716, type: 3}
-      propertyPath: WeapList.Array.size
-      value: 0
+      propertyPath: damageMult
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
