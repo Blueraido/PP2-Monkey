@@ -279,9 +279,15 @@ MonoBehaviour:
   controller: {fileID: 0}
   cam: {fileID: 2785420782244018655}
   HP: 10
-  Stamina: 0
+  Stamina: 10
   shootSpeed: 1
-  projectile: {fileID: 3920310190469411937, guid: c80d2c60d4a9f974ca22ebd021dca9d2, type: 3}
+  projectile: {fileID: 0}
+  defaultWeap: {fileID: 11400000, guid: ccc30e1241ff7fa42b5e37e8524ec6cf, type: 2}
+  Weapmodel: {fileID: 0}
+  hitFanfare: {fileID: 0}
+  WeapList: []
+  destroyTime: 0
+  arc: 0
 --- !u!33 &5779571421580162907
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -369,7 +375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8236151647252475276, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.89
       objectReference: {fileID: 0}
     - target: {fileID: 8236151647252475276, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
       propertyPath: m_LocalPosition.z
