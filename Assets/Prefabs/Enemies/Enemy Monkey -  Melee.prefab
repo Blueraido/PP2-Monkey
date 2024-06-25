@@ -2874,30 +2874,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 92453144113065848}
     m_Modifications:
-    - target: {fileID: 5186565992919647348, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
-      propertyPath: m_Color.b
-      value: 0.09659413
-      objectReference: {fileID: 0}
-    - target: {fileID: 5186565992919647348, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
-      propertyPath: m_Color.g
-      value: 0.09659413
-      objectReference: {fileID: 0}
-    - target: {fileID: 5186565992919647348, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8301887
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236151647252475276, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236151647252475276, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8236151647252475276, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8236151647252475276, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
