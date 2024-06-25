@@ -22,7 +22,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     Rigidbody rb;
     bool isGrounded = true;
     bool canJump = true;
-
+    int timesJumped;
 
     // Start is called before the first frame update
     void Start()
@@ -65,10 +65,16 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
+        if(isGrounded)
+        {
+            timesJumped = 0;
+        }
 
-        if(Input.GetButtonDown("Jump") && canJump && isGrounded)
+
+        if(Input.GetButtonDown("Jump") && canJump && timesJumped < numOfJumps)
         {
             canJump = false;
+            timesJumped++;
             jumpProcess();
             Invoke(nameof(jumpRefresh), 0.25f);
         }
