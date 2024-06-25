@@ -288,6 +288,7 @@ MonoBehaviour:
   WeapList: []
   destroyTime: 0
   arc: 0
+  damageMult: 1
 --- !u!33 &5779571421580162907
 MeshFilter:
   m_ObjectHideFlags: 0
