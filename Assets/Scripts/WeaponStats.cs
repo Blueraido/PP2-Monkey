@@ -15,6 +15,6 @@ public class WeaponStats : ScriptableObject
     [Range(1, 10)] public int destroyTime;
     public PlayerProjectile projectile;
     public GameObject HitEffect;
-    [Range(1, 10)] public float arc;
+    [Range(0, 10)] public float arc;
 
 }
