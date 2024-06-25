@@ -5,29 +5,49 @@ using UnityEngine;
 
 public class PlayerMovementC : MonoBehaviour, IDamage
 {
+    [Header("Components")]
+    [SerializeField] LayerMask isGround;
+    [SerializeField] Transform orientation;
+
+    [Header("Jumping stats")]
     [SerializeField] float jumpSpeed;
     [SerializeField] int numOfJumps;
     [SerializeField] float jumpSpeedMultiplier;
-    [SerializeField] float moveSpeed;
+
+    [Header("Speed and physics stats")]
+    [SerializeField] float walkSpeed;
+    [SerializeField] float sprintSpeed;
+    [SerializeField] float crouchSpeed;
+    [SerializeField] float crouchHeight;
     [SerializeField] float height;
     [SerializeField] float drag;
-    [SerializeField] LayerMask isGround;
-    [SerializeField] Transform orientation;
-    Vector3 moveDirection;
 
     //Used for input
     float horizontal;
     float vertical;
+    float moveSpeed;
+    float initialHeight;
+
+    Vector3 moveDirection;
 
     Rigidbody rb;
     bool isGrounded = true;
     bool canJump = true;
     int timesJumped;
+    movementSpeed state;
+
+    enum movementSpeed
+    {
+        walking,
+        sprinting,
+        crouching,
+        midAir
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        initialHeight = transform.localScale.y;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         
@@ -39,6 +59,8 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         //Checks for ground below player using a raycast
         isGrounded = Physics.Raycast(transform.position, Vector3.down, height * 0.5f + 0.2f, isGround);
         dirInput();
+        speedCheck();
+        speedHandler();
         if(isGrounded)
         {
             rb.drag = drag;
@@ -48,7 +70,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
             rb.drag = 0;
         }
 
-        speedCheck();
+
     }
     public void takeDamage(float damage)
     {
@@ -70,13 +92,48 @@ public class PlayerMovementC : MonoBehaviour, IDamage
             timesJumped = 0;
         }
 
-
+        //Jump function
         if(Input.GetButtonDown("Jump") && canJump && timesJumped < numOfJumps)
         {
             canJump = false;
             timesJumped++;
             jumpProcess();
             Invoke(nameof(jumpRefresh), 0.25f);
+        }
+
+        //Crouch function
+        if(Input.GetButtonDown("Crouch"))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        }
+        else if(Input.GetButtonUp("Crouch"))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, initialHeight, transform.localScale.z);
+        }
+    }
+
+    private void speedHandler()
+    {
+
+        if(Input.GetButton("Crouch"))
+        {
+            state = movementSpeed.crouching;
+            moveSpeed = crouchSpeed;
+        }
+        if (isGrounded && Input.GetButton("Sprint"))
+        {
+            state = movementSpeed.sprinting;
+            moveSpeed = sprintSpeed;
+        }
+        else if(isGrounded)
+        {
+            state = movementSpeed.walking;
+            moveSpeed = walkSpeed;
+        }
+        else
+        {
+            state = movementSpeed.midAir;
         }
     }
 
