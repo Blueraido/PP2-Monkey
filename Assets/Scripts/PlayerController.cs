@@ -64,6 +64,8 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdateUI();
         if (HP <= 0)
         {
+            HP = 0;
+            UpdateUI();
             GameManager.instance.updateLose();
         }
     }
