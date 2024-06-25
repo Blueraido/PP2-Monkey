@@ -33,11 +33,10 @@ public class PlayerController : MonoBehaviour, IDamage
     void Start()
     {
         instance = this;
-        GetWeaponStats(defaultWeap);
         HpOriginal = HP;
         StaminaOriginal = Stamina;
         UpdateUI();
-
+        GetWeaponStats(defaultWeap);
     }
 
     // Update is called once per frame
@@ -93,7 +92,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void changeWeap()
     {
-        UpdateUI();
         shootDamage = WeapList[selectedWeap].damage;
         shootSpeed = WeapList[selectedWeap].speed;
         projectileSpeed = WeapList[selectedWeap].ProjectileSpeed;
@@ -101,9 +99,10 @@ public class PlayerController : MonoBehaviour, IDamage
         hitFanfare = WeapList[selectedWeap].HitEffect;
         destroyTime = WeapList[selectedWeap].destroyTime;
         arc = WeapList[selectedWeap].arc;
-        Weapmodel.GetComponent<MeshFilter>().sharedMesh = WeapList[selectedWeap].Weapmodel.GetComponent<MeshFilter>().sharedMesh;
-        Weapmodel.GetComponent<MeshRenderer>().sharedMaterial = WeapList[selectedWeap].Weapmodel.GetComponent<MeshRenderer>().sharedMaterial;
-    }
+
+        //Weapmodel.GetComponent<MeshFilter>().sharedMesh = WeapList[selectedWeap].Weapmodel.GetComponent<MeshFilter>().sharedMesh;
+        //Weapmodel.GetComponent<MeshRenderer>().sharedMaterial = WeapList[selectedWeap].Weapmodel.GetComponent<MeshRenderer>().sharedMaterial;
+}
 
     public void GetWeaponStats(WeaponStats weap)
     {
@@ -120,6 +119,66 @@ public class PlayerController : MonoBehaviour, IDamage
     public GameObject getFanfare()
     {
         return hitFanfare;
+    }
+
+    // More getters as far as the eye can see
+    public int GetHealthMax()
+    {
+        return HpOriginal;
+    }
+    public int GetHealth()
+    {
+        return HP;
+    }
+    public int GetStaminaMax()
+    {
+        return StaminaOriginal;
+    }
+    public int GetStamina()
+    {
+        return Stamina;
+    }
+
+    // Functions add to current values
+    public void AddHealthMax(int toAdd)
+    {
+        HpOriginal += toAdd;
+        UpdateUI();
+    }
+
+    public void AddHealth(int toAdd)
+    {
+
+        if (toAdd + HP <= HpOriginal)
+        {
+            HP += toAdd; // If the sum of toAdd and HP goes below max, add like normal.
+        }
+        else if (toAdd + HP > HpOriginal)
+        {
+            HP = HpOriginal; // If over max, set HP to max in order to prevent exceeding it.
+        }
+
+        UpdateUI();
+    }
+
+    public void AddStaminaMax(int toAdd)
+    {
+        StaminaOriginal += toAdd;
+        UpdateUI();
+    }
+
+    public void AddStamina(int toAdd) // May or may not get used
+    {
+        if (toAdd + Stamina <= StaminaOriginal)
+        {
+            Stamina += StaminaOriginal;
+        }
+        else if (toAdd + Stamina > StaminaOriginal)
+        {
+            Stamina = StaminaOriginal;
+        }
+
+        UpdateUI();
     }
 }
 

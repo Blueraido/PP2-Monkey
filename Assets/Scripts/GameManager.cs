@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     // Obtain player references
     public static GameManager instance;
     public GameObject player;
+    public GameObject playerMovement;
 
-    // Player script reference:
+    // Player script reference
     public PlayerController playerScript;
+    public PlayerMovementC playerMovementScript;
 
     // Projectile reference
     public Projectile projectileScript;
@@ -50,6 +52,8 @@ public class GameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
+        playerMovement = GameObject.FindWithTag("PlayerMovement");
+        playerMovementScript = playerMovement.GetComponent<PlayerMovementC>();
     }
 
     void Update()

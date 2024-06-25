@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovementC : MonoBehaviour, IDamage
@@ -106,5 +107,15 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     private void jumpRefresh()
     {
         canJump = true;
+    }
+
+    public void AddSpeed(int toAdd)
+    {
+        moveSpeed += toAdd;
+    }
+
+    public void AddJumps(int toAdd)
+    {
+        numOfJumps += toAdd;
     }
 }

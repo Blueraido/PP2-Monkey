@@ -25,37 +25,48 @@ public class ButtonProcessing : MonoBehaviour
 #endif
     }
 
+    public void fullHeal()
+    {
+        GameManager.instance.playerScript.AddHealth(GameManager.instance.playerScript.GetHealthMax());
+    }
+
     // Exp buttons for leveling below
     // Replace actual funcs with getters / setters for player eventually
     // Not everything is guaranteed to be used, consider it a secret for dataminers to find lol
     public void expButtonDamage()
     {
-        Debug.Log("Damage Increased!");
-        //GameManager.instance.playerScript.stamina += 5;
+        // Still waiting
+        //GameManager.instance.playerScript.AddDamageMult(1.1);
+        fullHeal();
         GameManager.instance.menuProcess();
+        Debug.Log("Damage Increased!");
     }
     public void expButtonHealth()
     {
-        Debug.Log("Health Increased!");
-        //GameManager.instance.playerScript.HP += 5;
+        GameManager.instance.playerScript.AddHealthMax(5); // adds health here, full heals below
+        fullHeal();
         GameManager.instance.menuProcess();
+        Debug.Log("Health Increased!");
     }
     public void expButtonSpeed()
     {
-        Debug.Log("Speed Increased!");
-        //GameManager.instance.playerScript.speed += 1;
+        GameManager.instance.playerMovementScript.AddSpeed(1);
+        fullHeal();
         GameManager.instance.menuProcess();
+        Debug.Log("Speed Increased!");
     }
     public void expButtonStamina()
     {
-        Debug.Log("Stamina Increased!");
-        //GameManager.instance.playerScript.stamina += 5;
+        GameManager.instance.playerScript.AddStamina(5);
+        fullHeal();
         GameManager.instance.menuProcess();
+        Debug.Log("Stamina Increased!");
     }
     public void expButtonJumps()
     {
-        Debug.Log("Number of Jumps Increased!");
-        //GameManager.instance.playerScript.jumps += 1;
+        GameManager.instance.playerMovementScript.AddJumps(1);
+        fullHeal();
         GameManager.instance.menuProcess();
+        Debug.Log("Number of Jumps Increased!");
     }
 }
