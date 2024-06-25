@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        Instantiate(projectile, cam.transform.position + new Vector3(0, 1, 1), cam.transform.rotation);
+        Instantiate(projectile, cam.transform.position, cam.transform.rotation);
         yield return new WaitForSeconds(shootSpeed);
         isShooting = false;
     }
@@ -64,6 +64,8 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdateUI();
         if (HP <= 0)
         {
+            HP = 0;
+            UpdateUI();
             GameManager.instance.updateLose();
         }
     }
