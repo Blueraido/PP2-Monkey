@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToSpawn:
   - {fileID: 3514224558381805874, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-  - {fileID: 1292728789090316678, guid: c45479cda8750db40bc87627e77fb91c, type: 3}
+  - {fileID: 8752316264213676479, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
   numToSpawn: 10
   spawnTimer: 1
   spawnPos:

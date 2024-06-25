@@ -638,63 +638,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63efbc9f1e176db47a5c3758b6f4939d, type: 3}
---- !u!1001 &430764927
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.458075
-      objectReference: {fileID: 0}
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.5389986
-      objectReference: {fileID: 0}
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 720347576483957236, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3514224558381805874, guid: 76905113f3b548841affef5de27bbf25, type: 3}
-      propertyPath: m_Name
-      value: Enemy Monkey - Ranged (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 76905113f3b548841affef5de27bbf25, type: 3}
 --- !u!1001 &456011066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1777,6 +1720,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63efbc9f1e176db47a5c3758b6f4939d, type: 3}
+--- !u!1001 &1526750574
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0020038
+      objectReference: {fileID: 0}
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.638
+      objectReference: {fileID: 0}
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 92453144113065848, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752316264213676479, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
+      propertyPath: m_Name
+      value: Enemy Monkey -  Melee
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
 --- !u!1001 &1539597913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2374,6 +2374,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 699107436721279435, guid: c15c14d28cf93784db8c923f2fa6d15d, type: 3}
+      propertyPath: objectsToSpawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 8752316264213676479, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
     - target: {fileID: 2476767791309243032, guid: c15c14d28cf93784db8c923f2fa6d15d, type: 3}
       propertyPath: m_Name
       value: TestSpawner
@@ -2384,7 +2388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6669652188989614547, guid: c15c14d28cf93784db8c923f2fa6d15d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.102000475
+      value: 0.52
       objectReference: {fileID: 0}
     - target: {fileID: 6669652188989614547, guid: c15c14d28cf93784db8c923f2fa6d15d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2457,7 +2461,7 @@ SceneRoots:
   - {fileID: 1607559756}
   - {fileID: 1983029631}
   - {fileID: 731153105}
+  - {fileID: 1526750574}
   - {fileID: 2040831007}
-  - {fileID: 430764927}
   - {fileID: 7441741089458911703}
   - {fileID: 1130523698}
