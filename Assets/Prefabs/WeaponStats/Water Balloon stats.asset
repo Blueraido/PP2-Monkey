@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Weapmodel: {fileID: 0}
   damage: 1
-  speed: 0.6
+  speed: 0.8
   ProjectileSpeed: 20
   destroyTime: 10
   projectile: {fileID: -414417957641989214, guid: c80d2c60d4a9f974ca22ebd021dca9d2, type: 3}

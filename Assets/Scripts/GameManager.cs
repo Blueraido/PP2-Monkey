@@ -52,8 +52,10 @@ public class GameManager : MonoBehaviour
     // Stats being referenced in menuStats
     [SerializeField] TMP_Text statDamageCurrGun;
     [SerializeField] TMP_Text statDamageMult;
+    [SerializeField] TMP_Text statTotal;
     [SerializeField] TMP_Text statSpeed;
     [SerializeField] TMP_Text statNumJumps;
+    
 
     // Toggle Visible UI Elements
     [SerializeField] Image reticle;
@@ -88,12 +90,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Tab"))
         {
             DisplayStats();
-            Debug.Log("Stats func is at least running!");
+            Debug.Log("Tab being held...");
             menuStats.SetActive(true);
 
         }
         else if (Input.GetButtonUp("Tab"))
         {
+            Debug.Log("...you let go.");
             menuStats.SetActive(false);
         }
     }
@@ -172,15 +175,23 @@ public class GameManager : MonoBehaviour
     void DisplayStats()
     {
         // Current Damage of Gun
-        // statDamageCurrGun.text = splatCount.ToString("F0");
+        WeaponStats currentWeap = playerScript.GetSelectedWeapon();
+        float currentGunDamage = currentWeap.damage;
+        statDamageCurrGun.text = currentGunDamage.ToString("F0");
 
         // Damage Multiplier
-        statDamageCurrGun.text = playerScript.GetDamageMult().ToString("F0");
+        float damageMult = playerScript.GetDamageMult();
+        
+        // Spaghetti code heaven (fixes a rounding error???)
+        float total = currentGunDamage * damageMult;
+        statTotal.text = total.ToString();
+        float corredtDisplay = total / currentGunDamage;
+        statDamageMult.text = corredtDisplay.ToString();
 
         // Speed
-        // statDamageMult.text = GameManager.instance.playerMovementScript.GetSpeed().ToString("F0");
+        statSpeed.text = instance.playerMovementScript.GetSpeed().ToString("F0");
 
         // Number of Jumps
-        // statDamageMult.text = GameManager.instance.playerMovementScript.GetJumpCount().ToString("F0");
+        statNumJumps.text = instance.playerMovementScript.GetJumps().ToString("F0");
     }
 }

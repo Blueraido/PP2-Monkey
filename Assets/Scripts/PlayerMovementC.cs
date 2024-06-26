@@ -203,6 +203,15 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         numOfJumps += toAdd;
     }
 
+    public float GetSpeed()
+    {
+        return walkSpeed;
+    }
+    public int GetJumps()
+    {
+        return numOfJumps;
+    }
+
     private bool slope()
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, height * 0.5f + 0.3f))
