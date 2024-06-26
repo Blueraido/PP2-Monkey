@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEditor;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,12 +41,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuLevelUp; // Managed by LevelManager.cs
+    [SerializeField] GameObject menuStats;
 
     // Objective text ui processing
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text splatCountText;
     public int enemyCount;
     int splatCount;
+
+    // Stats being referenced in menuStats
+    [SerializeField] TMP_Text statDamageCurrGun;
+    [SerializeField] TMP_Text statDamageMult;
+    [SerializeField] TMP_Text statSpeed;
+    [SerializeField] TMP_Text statNumJumps;
 
     // Toggle Visible UI Elements
     [SerializeField] Image reticle;
@@ -75,6 +83,18 @@ public class GameManager : MonoBehaviour
                 menuProcess(); // Unpause is done by passing in nothing
 
             else { } // Do nothing if other assumed menu is on screen (only pause should be esc out of)
+        }
+
+        if (Input.GetButtonDown("Tab"))
+        {
+            DisplayStats();
+            Debug.Log("Stats func is at least running!");
+            menuStats.SetActive(true);
+
+        }
+        else if (Input.GetButtonUp("Tab"))
+        {
+            menuStats.SetActive(false);
         }
     }
 
@@ -148,5 +168,19 @@ public class GameManager : MonoBehaviour
     public void updateLevelUp()
     {
         menuProcess(menuLevelUp);
+    }
+    void DisplayStats()
+    {
+        // Current Damage of Gun
+        // statDamageCurrGun.text = splatCount.ToString("F0");
+
+        // Damage Multiplier
+        // statDamageMult.text = GameManager.instance.playerScript.GetDamageMult().ToString("F0");
+
+        // Speed
+        // statDamageMult.text = GameManager.instance.playerMovementScript.GetSpeed().ToString("F0");
+
+        // Number of Jumps
+        // statDamageMult.text = GameManager.instance.playerMovementScript.GetJumpCount().ToString("F0");
     }
 }

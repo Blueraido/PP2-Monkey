@@ -150,6 +150,10 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         return Stamina;
     }
+    public float GetDamageMult()
+    {
+        return damageMult;
+    }
 
     // Functions add to current values
     public void AddHealthMax(int toAdd)

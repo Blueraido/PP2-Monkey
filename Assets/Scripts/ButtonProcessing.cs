@@ -35,7 +35,6 @@ public class ButtonProcessing : MonoBehaviour
     // Not everything is guaranteed to be used, consider it a secret for dataminers to find lol
     public void expButtonDamage()
     {
-        // Still waiting
         GameManager.instance.playerScript.AddDamageMult(0.5f);
         fullHeal();
         GameManager.instance.menuProcess();
