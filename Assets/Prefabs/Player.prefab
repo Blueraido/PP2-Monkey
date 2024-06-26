@@ -50,16 +50,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6931c4371fc149443b0d1795b557c862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpSpeed: 12
-  numOfJumps: 3
-  jumpSpeedMultiplier: 0.4
-  moveSpeed: 7
-  height: 2
-  drag: 5
   isGround:
     serializedVersion: 2
     m_Bits: 8
   orientation: {fileID: 2839846631532141615}
+  jumpSpeed: 12
+  numOfJumps: 3
+  jumpSpeedMultiplier: 0.4
+  walkSpeed: 5
+  sprintSpeed: 10
+  crouchSpeed: 2.5
+  crouchHeight: 0.5
+  height: 2
+  drag: 5
+  maxSlopeAngle: 40
 --- !u!54 &3164594518268900988
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -413,10 +417,6 @@ PrefabInstance:
     - target: {fileID: 8601403953162278694, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
       propertyPath: m_Name
       value: Player MiniMap Icon
-      objectReference: {fileID: 0}
-    - target: {fileID: 8601403953162278694, guid: 073ceb58fba405f4ea7b8463fac5695a, type: 3}
-      propertyPath: m_Layer
-      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

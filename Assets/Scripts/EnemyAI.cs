@@ -39,6 +39,8 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     public virtual void Start()
     {
+        GameManager.instance.updateGoalEnemy(1);
+        stoppingDistanceOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
@@ -56,7 +58,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
         
     }
 
-    protected IEnumerator circlePlayer()
+    protected IEnumerator strafing()
     {
         yield return null;
     }
@@ -80,6 +82,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
 
     protected bool playerSighted()
     {
+        agent.stoppingDistance = stoppingDistanceOrig;
         // Get the direction of the player and the angle relative to LOS
         playerDir = GameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(GameManager.instance.player.transform.position - headPos.position, transform.forward);
@@ -101,7 +104,6 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
             }
 
         }
-        agent.stoppingDistance = stoppingDistanceOrig;
         return false;
     }
     protected void faceTarget()
@@ -114,6 +116,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     {
         HP -= (int)amount;
         StartCoroutine(flashDamage());
+        agent.SetDestination(GameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
