@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc77a19a7abe62b47899452b26b03afe, type: 3}
+  m_Name: Banana stat
+  m_EditorClassIdentifier: 
+  Weapmodel: {fileID: 0}
+  damage: 3
+  speed: 1.2
+  ProjectileSpeed: 10
+  destroyTime: 10
+  projectile: {fileID: -414417957641989214, guid: 7cb96879ff26d104d8a3d2dc1ed500be, type: 3}
+  HitEffect: {fileID: 1092222898296383152, guid: 453fbde5bef7b8047a00024ce85f827b, type: 3}
+  arc: 0.2

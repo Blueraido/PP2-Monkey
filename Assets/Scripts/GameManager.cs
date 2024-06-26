@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public TMP_Text playerLevelValueText;
 
     // Pause menu processing
-    bool isPaused;
+    public bool isPaused;
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
     {
         if (menu != null)
         {
+            if (menuActive != null)
+                return;
             togglePause(); // Pauses when isPaused = false, unpauses if the opposite is true
             menuActive = menu; // Sets the active menu to parsed menu
             menuActive.SetActive(isPaused);

@@ -50,16 +50,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6931c4371fc149443b0d1795b557c862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpSpeed: 12
-  numOfJumps: 3
-  jumpSpeedMultiplier: 0.4
-  moveSpeed: 7
-  height: 2
-  drag: 5
   isGround:
     serializedVersion: 2
     m_Bits: 8
   orientation: {fileID: 2839846631532141615}
+  jumpSpeed: 12
+  numOfJumps: 3
+  jumpSpeedMultiplier: 0.4
+  walkSpeed: 5
+  sprintSpeed: 10
+  crouchSpeed: 2.5
+  crouchHeight: 0.5
+  height: 2
+  drag: 5
+  maxSlopeAngle: 40
 --- !u!54 &3164594518268900988
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -471,6 +475,10 @@ PrefabInstance:
     - target: {fileID: 4088494807917023015, guid: b6409dc8224ec3e498a0d680159e83c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373357932534787173, guid: b6409dc8224ec3e498a0d680159e83c5, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4105
       objectReference: {fileID: 0}
     - target: {fileID: 7382506543762287944, guid: b6409dc8224ec3e498a0d680159e83c5, type: 3}
       propertyPath: m_Name

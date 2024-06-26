@@ -5,29 +5,51 @@ using UnityEngine;
 
 public class PlayerMovementC : MonoBehaviour, IDamage
 {
+    [Header("Components")]
+    [SerializeField] LayerMask isGround;
+    [SerializeField] Transform orientation;
+
+    [Header("Jumping stats")]
     [SerializeField] float jumpSpeed;
     [SerializeField] int numOfJumps;
     [SerializeField] float jumpSpeedMultiplier;
-    [SerializeField] float moveSpeed;
+
+    [Header("Speed and physics stats")]
+    [SerializeField] float walkSpeed;
+    [SerializeField] float sprintSpeed;
+    [SerializeField] float crouchSpeed;
+    [SerializeField] float crouchHeight;
     [SerializeField] float height;
     [SerializeField] float drag;
-    [SerializeField] LayerMask isGround;
-    [SerializeField] Transform orientation;
-    Vector3 moveDirection;
+    [SerializeField] float maxSlopeAngle;
 
     //Used for input
     float horizontal;
     float vertical;
+    float moveSpeed;
+    float initialHeight;
+
+    Vector3 moveDirection;
+    RaycastHit slopeHit;
 
     Rigidbody rb;
     bool isGrounded = true;
     bool canJump = true;
+    int timesJumped;
+    movementSpeed state;
 
+    enum movementSpeed
+    {
+        walking,
+        sprinting,
+        crouching,
+        midAir
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        initialHeight = transform.localScale.y;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         
@@ -39,6 +61,8 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         //Checks for ground below player using a raycast
         isGrounded = Physics.Raycast(transform.position, Vector3.down, height * 0.5f + 0.2f, isGround);
         dirInput();
+        speedCheck();
+        speedHandler();
         if(isGrounded)
         {
             rb.drag = drag;
@@ -48,7 +72,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
             rb.drag = 0;
         }
 
-        speedCheck();
+
     }
     public void takeDamage(float damage)
     {
@@ -65,18 +89,68 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
+        if(isGrounded)
+        {
+            timesJumped = 0;
+        }
 
-        if(Input.GetButtonDown("Jump") && canJump && isGrounded)
+        //Jump function
+        if(Input.GetButtonDown("Jump") && canJump && timesJumped < numOfJumps)
         {
             canJump = false;
+            timesJumped++;
             jumpProcess();
             Invoke(nameof(jumpRefresh), 0.25f);
+        }
+
+        //Crouch function
+        if(Input.GetButtonDown("Crouch"))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        }
+        else if(Input.GetButtonUp("Crouch"))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, initialHeight, transform.localScale.z);
+        }
+    }
+
+    private void speedHandler()
+    {
+
+        if(isGrounded && Input.GetButton("Crouch"))
+        {
+            state = movementSpeed.crouching;
+            moveSpeed = crouchSpeed;
+        }
+        else if (isGrounded && Input.GetButton("Sprint"))
+        {
+            state = movementSpeed.sprinting;
+            moveSpeed = sprintSpeed;
+        }
+        else if(isGrounded)
+        {
+            state = movementSpeed.walking;
+            moveSpeed = walkSpeed;
+        }
+        else
+        {
+            state = movementSpeed.midAir;
         }
     }
 
     private void move()
     {
         moveDirection = orientation.forward * vertical + orientation.right * horizontal;
+        if(slope())
+        {
+            rb.AddForce(slopeDirection() * moveSpeed * 20f, ForceMode.Force);
+            if(rb.velocity.y > 0)
+            {
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);   
+            }
+        }
+
         if(isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10, ForceMode.Force);
@@ -85,6 +159,8 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10 * jumpSpeedMultiplier, ForceMode.Force);
         }
+
+        rb.useGravity = !slope();
 
     }
 
@@ -111,11 +187,28 @@ public class PlayerMovementC : MonoBehaviour, IDamage
 
     public void AddSpeed(int toAdd)
     {
-        moveSpeed += toAdd;
+        sprintSpeed += toAdd;
+        walkSpeed += toAdd;
+        crouchSpeed += toAdd;  
     }
 
     public void AddJumps(int toAdd)
     {
         numOfJumps += toAdd;
+    }
+
+    private bool slope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, height * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+        return false;
+    }
+    
+    private Vector3 slopeDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
     }
 }

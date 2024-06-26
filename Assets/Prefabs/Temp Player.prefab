@@ -52,19 +52,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4548480375749661810}
+  cam: {fileID: 0}
   HP: 10
-  speed: 5
-  sprintMod: 2
-  numOfJumps: 3
-  jumpSpeed: 10
-  gravity: 25
-  sprintCost: 10
-  jumpCost: 5
-  staminaRegenRate: 10
-  staminaRegenDelay: 2
-  stamina: 100
+  Stamina: 0
   shootSpeed: 1
-  projectile: {fileID: 3920310190469411937, guid: c80d2c60d4a9f974ca22ebd021dca9d2, type: 3}
+  projectile: {fileID: -414417957641989214, guid: c80d2c60d4a9f974ca22ebd021dca9d2, type: 3}
+  defaultWeap: {fileID: 0}
+  Weapmodel: {fileID: 0}
+  hitFanfare: {fileID: 0}
+  WeapList: []
+  destroyTime: 0
+  arc: 0
 --- !u!143 &4548480375749661810
 CharacterController:
   m_ObjectHideFlags: 0
@@ -215,6 +213,7 @@ MonoBehaviour:
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
+  camOrientation: {fileID: 0}
 --- !u!20 &3746668595919268255
 Camera:
   m_ObjectHideFlags: 0
