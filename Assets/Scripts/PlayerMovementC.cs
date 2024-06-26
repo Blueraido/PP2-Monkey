@@ -8,6 +8,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     [Header("Components")]
     [SerializeField] LayerMask isGround;
     [SerializeField] Transform orientation;
+    [SerializeField] Camera miniMapCamera;
 
     [Header("Jumping stats")]
     [SerializeField] float jumpSpeed;
@@ -28,6 +29,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     float vertical;
     float moveSpeed;
     float initialHeight;
+    float miniMapOrigFOV;
 
     Vector3 moveDirection;
     RaycastHit slopeHit;
@@ -50,6 +52,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     void Start()
     {
         initialHeight = transform.localScale.y;
+        miniMapOrigFOV = miniMapCamera.orthographicSize;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         
@@ -112,7 +115,10 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         else if(Input.GetButtonUp("Crouch"))
         {
             transform.localScale = new Vector3(transform.localScale.x, initialHeight, transform.localScale.z);
+            miniMapCamera.fieldOfView = miniMapOrigFOV;
+
         }
+
     }
 
     private void speedHandler()
