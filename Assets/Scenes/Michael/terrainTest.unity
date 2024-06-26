@@ -518,14 +518,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 192556672012776220, guid: 5109aad780160ac428b00d78298f614a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f688952ba3342534fa69d82a2f8d212d, type: 3}
     - target: {fileID: 824792081753402033, guid: 5109aad780160ac428b00d78298f614a, type: 3}
       propertyPath: m_Name
       value: Immaculate UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2912372951580185355, guid: 5109aad780160ac428b00d78298f614a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 151.3999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2912372951580185355, guid: 5109aad780160ac428b00d78298f614a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 42.69995
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471552850915907757, guid: 5109aad780160ac428b00d78298f614a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6897d43c39c9f6e42933c2e2cc27f9f5, type: 3}
     - target: {fileID: 6574566281574768772, guid: 5109aad780160ac428b00d78298f614a, type: 3}
       propertyPath: debug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6732061127455303855, guid: 5109aad780160ac428b00d78298f614a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5f868a72da04714a980be94145f85ad, type: 3}
     - target: {fileID: 7852371160083617524, guid: 5109aad780160ac428b00d78298f614a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -606,6 +626,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8760548946510120174, guid: 5109aad780160ac428b00d78298f614a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b2068e388c45f53438fc903d955bcb19, type: 3}
+    - target: {fileID: 8899449221799801888, guid: 5109aad780160ac428b00d78298f614a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1237739039dc3d245a710267cc7b6028, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

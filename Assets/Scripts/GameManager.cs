@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
         // statDamageCurrGun.text = splatCount.ToString("F0");
 
         // Damage Multiplier
-        // statDamageMult.text = GameManager.instance.playerScript.GetDamageMult().ToString("F0");
+        statDamageCurrGun.text = playerScript.GetDamageMult().ToString("F0");
 
         // Speed
         // statDamageMult.text = GameManager.instance.playerMovementScript.GetSpeed().ToString("F0");
