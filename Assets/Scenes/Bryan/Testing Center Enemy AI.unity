@@ -439,23 +439,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63efbc9f1e176db47a5c3758b6f4939d, type: 3}
---- !u!1 &268426313 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6020234601490844402, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
-  m_PrefabInstance: {fileID: 4791895921763329232}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &268426316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268426313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fffe5592360d1114f92cd91436f11cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &372660992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400106, guid: 176bb58726540db41b891208fbaaf55a, type: 3}
@@ -1195,23 +1178,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63efbc9f1e176db47a5c3758b6f4939d, type: 3}
---- !u!1 &1753915747 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1716823382194190839, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
-  m_PrefabInstance: {fileID: 4791895921763329232}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1753915750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753915747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fffe5592360d1114f92cd91436f11cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &291734015110733743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1325,28 +1291,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5173725351296363508, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
-      propertyPath: meleeDamage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8752316264213676479, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
       propertyPath: m_Name
       value: Enemy Monkey -  Melee
       objectReference: {fileID: 0}
-    - target: {fileID: 8752316264213676479, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1716823382194190839, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1753915750}
-    - targetCorrespondingSourceObject: {fileID: 6020234601490844402, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 268426316}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb31d158232efb4c8849596fe4f4b5b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

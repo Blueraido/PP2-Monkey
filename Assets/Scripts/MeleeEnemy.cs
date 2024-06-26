@@ -42,8 +42,10 @@ public class MeleeEnemy : EnemyAI
         fistLeftColliderOn(fistLeft);
         fistRightColliderOn(fistRight);
 
+#if false
         fistLeftColliderOff(fistLeft);
         fistRightColliderOff(fistRight);
+#endif
     }
     public void fistLeftColliderOn(Collider other)
     {
@@ -64,4 +66,5 @@ public class MeleeEnemy : EnemyAI
     {
         fistRight.enabled = false;
     }
+
 }
