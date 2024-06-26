@@ -145,6 +145,10 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         if(slope())
         {
             rb.AddForce(slopeDirection() * moveSpeed * 20f, ForceMode.Force);
+            if(rb.velocity.y > 0)
+            {
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);   
+            }
         }
 
         if(isGrounded)
@@ -155,6 +159,8 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10 * jumpSpeedMultiplier, ForceMode.Force);
         }
+
+        rb.useGravity = !slope();
 
     }
 
