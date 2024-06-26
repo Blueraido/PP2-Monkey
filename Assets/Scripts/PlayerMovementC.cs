@@ -21,6 +21,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     [SerializeField] float crouchHeight;
     [SerializeField] float height;
     [SerializeField] float drag;
+    [SerializeField] float maxSlopeAngle;
 
     //Used for input
     float horizontal;
@@ -29,6 +30,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     float initialHeight;
 
     Vector3 moveDirection;
+    RaycastHit slopeHit;
 
     Rigidbody rb;
     bool isGrounded = true;
@@ -116,12 +118,12 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     private void speedHandler()
     {
 
-        if(Input.GetButton("Crouch"))
+        if(isGrounded && Input.GetButton("Crouch"))
         {
             state = movementSpeed.crouching;
             moveSpeed = crouchSpeed;
         }
-        if (isGrounded && Input.GetButton("Sprint"))
+        else if (isGrounded && Input.GetButton("Sprint"))
         {
             state = movementSpeed.sprinting;
             moveSpeed = sprintSpeed;
@@ -140,6 +142,11 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     private void move()
     {
         moveDirection = orientation.forward * vertical + orientation.right * horizontal;
+        if(slope())
+        {
+            rb.AddForce(slopeDirection() * moveSpeed * 20f, ForceMode.Force);
+        }
+
         if(isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10, ForceMode.Force);
@@ -174,11 +181,28 @@ public class PlayerMovementC : MonoBehaviour, IDamage
 
     public void AddSpeed(int toAdd)
     {
-        moveSpeed += toAdd;
+        sprintSpeed += toAdd;
+        walkSpeed += toAdd;
+        crouchSpeed += toAdd;  
     }
 
     public void AddJumps(int toAdd)
     {
         numOfJumps += toAdd;
+    }
+
+    private bool slope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, height * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+        return false;
+    }
+    
+    private Vector3 slopeDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
     }
 }

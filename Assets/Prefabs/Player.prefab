@@ -63,6 +63,7 @@ MonoBehaviour:
   crouchHeight: 0.5
   height: 2
   drag: 5
+  maxSlopeAngle: 40
 --- !u!54 &3164594518268900988
 Rigidbody:
   m_ObjectHideFlags: 0
