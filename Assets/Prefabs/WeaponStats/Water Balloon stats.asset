@@ -19,4 +19,7 @@ MonoBehaviour:
   destroyTime: 10
   projectile: {fileID: -414417957641989214, guid: c80d2c60d4a9f974ca22ebd021dca9d2, type: 3}
   HitEffect: {fileID: 1092222898296383152, guid: 79319bd141ed8a14f85fed63c7c78ba5, type: 3}
+  ammo: 1
+  ammoMax: 0
+  isAmmoInfinite: 1
   arc: 0

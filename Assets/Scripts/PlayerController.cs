@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             WeapList[selectedWeap].ammo--;
         }
-        Instantiate(projectile, cam.transform.position + new Vector3(0, 1, 1), cam.transform.rotation);
+        Instantiate(projectile, cam.transform.position, cam.transform.rotation);
         if (WeapList[selectedWeap].ammo == 0)
         {
             WeapList.Remove(WeapList[selectedWeap]);
@@ -112,8 +112,8 @@ public class PlayerController : MonoBehaviour, IDamage
         hitFanfare = WeapList[selectedWeap].HitEffect;
         destroyTime = WeapList[selectedWeap].destroyTime;
         arc = WeapList[selectedWeap].arc;
-        //Weapmodel.GetComponent<MeshFilter>().sharedMesh = WeapList[selectedWeap].Weapmodel.GetComponent<MeshFilter>().sharedMesh;
-        //Weapmodel.GetComponent<MeshRenderer>().sharedMaterial = WeapList[selectedWeap].Weapmodel.GetComponent<MeshRenderer>().sharedMaterial;
+        Weapmodel.GetComponent<MeshFilter>().sharedMesh = WeapList[selectedWeap].Weapmodel.GetComponent<MeshFilter>().sharedMesh;
+        Weapmodel.GetComponent<MeshRenderer>().sharedMaterial = WeapList[selectedWeap].Weapmodel.GetComponent<MeshRenderer>().sharedMaterial;
 }
 
     public void GetWeaponStats(WeaponStats weap)
