@@ -54,7 +54,18 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+        if (!WeapList[selectedWeap].isAmmoInfinite)
+        {
+            WeapList[selectedWeap].ammo--;
+        }
         Instantiate(projectile, cam.transform.position + new Vector3(0, 1, 1), cam.transform.rotation);
+        if (WeapList[selectedWeap].ammo == 0)
+        {
+            WeapList.Remove(WeapList[selectedWeap]);
+            selectedWeap = WeapList.Count - 1;
+            changeWeap();
+            UpdateUI();
+        }
         yield return new WaitForSeconds(shootSpeed);
         isShooting = false;
     }
@@ -101,7 +112,6 @@ public class PlayerController : MonoBehaviour, IDamage
         hitFanfare = WeapList[selectedWeap].HitEffect;
         destroyTime = WeapList[selectedWeap].destroyTime;
         arc = WeapList[selectedWeap].arc;
-
         //Weapmodel.GetComponent<MeshFilter>().sharedMesh = WeapList[selectedWeap].Weapmodel.GetComponent<MeshFilter>().sharedMesh;
         //Weapmodel.GetComponent<MeshRenderer>().sharedMaterial = WeapList[selectedWeap].Weapmodel.GetComponent<MeshRenderer>().sharedMaterial;
 }

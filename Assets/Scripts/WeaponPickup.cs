@@ -10,11 +10,18 @@ public class WeaponPickup : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) {
-            GameManager.instance.playerScript.GetWeaponStats(weap);
-            Destroy(gameObject);
-        
-        }
+            if (weap.ammoMax == 0)
+            {
+                weap.ammo = int.MaxValue;
+            }
+            else
+            {
+                weap.ammo = weap.ammoMax;
+            }
+                GameManager.instance.playerScript.GetWeaponStats(weap);
 
+            Destroy(gameObject);
+        }
     }
 
 }

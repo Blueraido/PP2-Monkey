@@ -15,6 +15,9 @@ public class WeaponStats : ScriptableObject
     [Range(1, 10)] public int destroyTime;
     public PlayerProjectile projectile;
     public GameObject HitEffect;
+    public int ammo;
+    public int ammoMax;
+    public bool isAmmoInfinite;
     [Range(0, 10)] public float arc;
 
 }
