@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Water Balloon stats
   m_EditorClassIdentifier: 
   Weapmodel: {fileID: 396636864928647287, guid: 436a31fd3dbc04a4f9d49f00a7228e97, type: 3}
+  WeaponName: Water Balloon
   damage: 1
   speed: 0.8
   ProjectileSpeed: 20
