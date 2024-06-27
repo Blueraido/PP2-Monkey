@@ -110,7 +110,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         }
 
         //Jump function
-        if(Input.GetButtonDown("Jump") && canJump && timesJumped < numOfJumps)
+        if(Input.GetButtonDown("Jump") && canJump && timesJumped < numOfJumps && stamina > 0)
         {
             canJump = false;
             timesJumped++;
