@@ -6,6 +6,8 @@ public class MixerEnemyAttack : MonoBehaviour
 {
     [SerializeField] MixerEnemy mixerEnemy;
 
+    [SerializeField] Collider fistLeft;
+    [SerializeField] Collider fistRight;
     [SerializeField] Collider leg;
     // Start is called before the first frame update
     void Start()

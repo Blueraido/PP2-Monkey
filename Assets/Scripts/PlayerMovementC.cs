@@ -111,7 +111,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         }
 
         //Jump function
-        if (Input.GetButtonDown("Jump") && canJump && timesJumped < numOfJumps && stamina > 0)
+        if(Input.GetButtonDown("Jump") && canJump && timesJumped < numOfJumps && stamina > 0)
         {
             canJump = false;
             timesJumped++;
@@ -124,12 +124,12 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         }
 
         //Crouch function
-        if(Input.GetButtonDown("Crouch"))
+        if(Input.GetButtonDown("Crouch") && !GameManager.instance.isPaused)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
-        else if(Input.GetButtonUp("Crouch"))
+        else if(Input.GetButtonUp("Crouch") && !GameManager.instance.isPaused)
         {
             transform.localScale = new Vector3(transform.localScale.x, initialHeight, transform.localScale.z);
             miniMapCamera.fieldOfView = miniMapOrigFOV;

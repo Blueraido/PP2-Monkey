@@ -17,6 +17,12 @@ public class MeleeEnemy : EnemyAI
     bool fistLeftActive;
     bool fistRightActive;
 
+    public override void Start()
+    {
+        startingPos = transform.position;
+        stoppingDistanceOrig = agent.stoppingDistance;
+    }
+
     protected override IEnumerator attack()
     {
         isAttacking = true;
@@ -42,7 +48,7 @@ public class MeleeEnemy : EnemyAI
         fistLeftColliderOn(fistLeft);
         fistRightColliderOn(fistRight);
 
-#if true
+#if false
         fistLeftColliderOff(fistLeft);
         fistRightColliderOff(fistRight);
 #endif

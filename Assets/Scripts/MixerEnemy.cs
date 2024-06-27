@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 public class MixerEnemy : EnemyAI
@@ -20,6 +21,11 @@ public class MixerEnemy : EnemyAI
     bool inMeleeRange;
     bool inThrowRange;
 
+    public override void Start()
+    {
+        startingPos = transform.position;
+        stoppingDistanceOrig = agent.stoppingDistance;
+    }
     protected override IEnumerator attack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);
@@ -32,13 +38,14 @@ public class MixerEnemy : EnemyAI
         if (inThrowRange)
         {
             throwAttack();
-            yield return new WaitForSeconds(attackRate);
+            //yield return new WaitForSeconds(attackRate);
         }
         else if (inMeleeRange)
         {
             meleeKick();
-            yield return new WaitForSeconds(meleeRate);
         }
+        yield return new WaitForSeconds(meleeRate);
+
         isAttacking = false;
     }
 
@@ -46,7 +53,13 @@ public class MixerEnemy : EnemyAI
     {
         leftLegColliderOn(legLeft);
         anim.SetTrigger("Kick");
+        inMeleeRange = false;
         leftLegColliderOff(legLeft);
+    }
+
+    public void melee()
+    {
+
     }
 
     public void throwAttack() { anim.SetTrigger("Throw"); }

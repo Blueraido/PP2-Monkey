@@ -29,11 +29,6 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, destroyTime);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnCollisionEnter(Collision collision)
     {
         IDamage dmg = collision.gameObject.GetComponent<IDamage>();
