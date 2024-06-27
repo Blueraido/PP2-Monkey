@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] Camera cam;
 
     [SerializeField] int HP;
-    [SerializeField] int Stamina;
     [SerializeField] float shootSpeed;
     [SerializeField] PlayerProjectile projectile;
     [SerializeField] WeaponStats defaultWeap;
@@ -22,7 +21,6 @@ public class PlayerController : MonoBehaviour, IDamage
     int selectedWeapon;
     bool isShooting;
     int HpOriginal;
-    int StaminaOriginal;
     int selectedWeap;
     float projectileSpeed;
     public float shootDamage;
@@ -34,7 +32,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         instance = this;
         HpOriginal = HP;
-        StaminaOriginal = Stamina;
         UpdateUI();
         GetWeaponStats(defaultWeap);
     }
@@ -84,8 +81,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / HpOriginal;
         GameManager.instance.playerHealthValueText.text = HP.ToString() + " / " + HpOriginal.ToString();
-        GameManager.instance.playerStaminaBar.fillAmount = (float)Stamina / StaminaOriginal;
-        GameManager.instance.playerStaminaValueText.text = Stamina.ToString() + " / " + StaminaOriginal.ToString();
 
     }
 
@@ -145,14 +140,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         return HP;
     }
-    public int GetStaminaMax()
-    {
-        return StaminaOriginal;
-    }
-    public int GetStamina()
-    {
-        return Stamina;
-    }
     public float GetDamageMult()
     {
         return damageMult;
@@ -175,26 +162,6 @@ public class PlayerController : MonoBehaviour, IDamage
         else if (toAdd + HP > HpOriginal)
         {
             HP = HpOriginal; // If over max, set HP to max in order to prevent exceeding it.
-        }
-
-        UpdateUI();
-    }
-
-    public void AddStaminaMax(int toAdd)
-    {
-        StaminaOriginal += toAdd;
-        UpdateUI();
-    }
-
-    public void AddStamina(int toAdd) // May or may not get used
-    {
-        if (toAdd + Stamina <= StaminaOriginal)
-        {
-            Stamina += StaminaOriginal;
-        }
-        else if (toAdd + Stamina > StaminaOriginal)
-        {
-            Stamina = StaminaOriginal;
         }
 
         UpdateUI();

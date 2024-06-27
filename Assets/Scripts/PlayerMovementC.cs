@@ -23,6 +23,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     [SerializeField] float height;
     [SerializeField] float drag;
     [SerializeField] float maxSlopeAngle;
+    [SerializeField] float stamina;
 
     //Used for input
     float horizontal;
@@ -33,12 +34,15 @@ public class PlayerMovementC : MonoBehaviour, IDamage
 
     Vector3 moveDirection;
     RaycastHit slopeHit;
+    bool isSprinting;
 
+    float staminaOrig;
     Rigidbody rb;
     bool isGrounded = true;
     bool canJump = true;
     int timesJumped;
     movementSpeed state;
+    Coroutine staminaRegen;
 
     enum movementSpeed
     {
@@ -51,11 +55,12 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        staminaOrig = stamina;
         initialHeight = transform.localScale.y;
         miniMapOrigFOV = miniMapCamera.orthographicSize;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        
+        UpdateUI();
     }
 
     // Update is called once per frame
@@ -75,6 +80,13 @@ public class PlayerMovementC : MonoBehaviour, IDamage
             rb.drag = 0;
         }
 
+        if (isSprinting && vertical == 1)
+        {
+            stamina -= 2 * Time.deltaTime;
+            staminaCheck();
+            UpdateUI();
+            coroutineHandler();
+        }
 
     }
     public void takeDamage(float damage)
@@ -104,6 +116,10 @@ public class PlayerMovementC : MonoBehaviour, IDamage
             timesJumped++;
             jumpProcess();
             Invoke(nameof(jumpRefresh), 0.25f);
+            stamina--;
+            staminaCheck();
+            UpdateUI();
+            coroutineHandler();
         }
 
         //Crouch function
@@ -119,6 +135,8 @@ public class PlayerMovementC : MonoBehaviour, IDamage
 
         }
 
+
+
     }
 
     private void speedHandler()
@@ -128,20 +146,24 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         {
             state = movementSpeed.crouching;
             moveSpeed = crouchSpeed;
+            isSprinting = false;
         }
-        else if (isGrounded && Input.GetButton("Sprint"))
+        else if (isGrounded && Input.GetButton("Sprint") && stamina > 0)
         {
             state = movementSpeed.sprinting;
             moveSpeed = sprintSpeed;
+            isSprinting = true; 
         }
         else if(isGrounded)
         {
             state = movementSpeed.walking;
             moveSpeed = walkSpeed;
+            isSprinting = false;
         }
         else
         {
             state = movementSpeed.midAir;
+            isSprinting = false;
         }
     }
 
@@ -225,5 +247,71 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     private Vector3 slopeDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+    }
+    IEnumerator regenStamina()
+    {
+        yield return new WaitForSeconds(2f);
+        while (stamina < staminaOrig)
+        {
+            stamina += 0.2f;
+            staminaCheck();
+            UpdateUI();
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    void staminaCheck()
+    {
+        if (stamina < 0)
+        {
+            stamina = 0;
+            isSprinting = false;
+        }
+        else if (stamina > staminaOrig)
+        {
+            stamina = staminaOrig;
+        }
+    }
+    void coroutineHandler()
+    {
+        if (staminaRegen != null)
+        {
+            StopCoroutine(staminaRegen);
+        }
+        staminaRegen = StartCoroutine(regenStamina());
+    }
+
+    public void AddStaminaMax(int toAdd)
+    {
+        staminaOrig += toAdd;
+        UpdateUI();
+    }
+
+    public void AddStamina(int toAdd) // May or may not get used
+    {
+        if (toAdd + stamina <= staminaOrig)
+        {
+            stamina += staminaOrig;
+        }
+        else if (toAdd + stamina > staminaOrig)
+        {
+            stamina = staminaOrig;
+        }
+
+        UpdateUI();
+    }
+
+    public float GetStaminaMax()
+    {
+        return staminaOrig;
+    }
+    public float GetStamina()
+    {
+        return stamina;
+    }
+
+    public void UpdateUI()
+    {
+        GameManager.instance.playerStaminaBar.fillAmount = stamina / staminaOrig;
+        GameManager.instance.playerStaminaValueText.text = ((int)stamina).ToString() + " / " + ((int)staminaOrig).ToString();
     }
 }
