@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WaterGun
   m_EditorClassIdentifier: 
   Weapmodel: {fileID: 134812, guid: 3c81b162a1af44348b8994f7040514d4, type: 3}
+  WeaponName: Water Gun
   damage: 3
   speed: 0.001
   ProjectileSpeed: 20

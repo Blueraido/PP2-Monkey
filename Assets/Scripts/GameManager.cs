@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -55,7 +55,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text statTotal;
     [SerializeField] TMP_Text statSpeed;
     [SerializeField] TMP_Text statNumJumps;
-    
+
+    [SerializeField] public TMP_Text ammoCurrent;
+    [SerializeField] public TMP_Text ammoMax;
+    [SerializeField] public TMP_Text weaponName;
+
 
     // Toggle Visible UI Elements
     [SerializeField] Image reticle;
@@ -172,11 +176,10 @@ public class GameManager : MonoBehaviour
     {
         menuProcess(menuLevelUp);
     }
-    void DisplayStats()
+    public void DisplayStats()
     {
         // Current Damage of Gun
-        WeaponStats currentWeap = playerScript.GetSelectedWeapon();
-        float currentGunDamage = currentWeap.damage;
+        float currentGunDamage = playerScript.shootDamage;
         statDamageCurrGun.text = currentGunDamage.ToString("F0");
 
         // Damage Multiplier
@@ -193,5 +196,21 @@ public class GameManager : MonoBehaviour
 
         // Number of Jumps
         statNumJumps.text = instance.playerMovementScript.GetJumps().ToString("F0");
+    }
+    public void UpdateAmmo()
+    {
+        WeaponStats currWeap = playerScript.GetSelectedWeapon();
+        weaponName.text = currWeap.WeaponName.ToString();
+
+        if (currWeap.isAmmoInfinite)
+        {
+            ammoCurrent.text = "∞";
+            ammoMax.text = "∞";
+            return;
+        }
+
+        ammoCurrent.text = currWeap.ammo.ToString();
+        ammoMax.text = currWeap.ammoMax.ToString();
+        
     }
 }

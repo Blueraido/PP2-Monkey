@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour, IDamage
     int StaminaOriginal;
     int selectedWeap;
     float projectileSpeed;
-    float shootDamage;
+    public float shootDamage;
     public float damageMult;
     public static PlayerController instance;
 
@@ -63,9 +63,9 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             WeapList.Remove(WeapList[selectedWeap]);
             selectedWeap = WeapList.Count - 1;
-            changeWeap();
             UpdateUI();
         }
+        UpdateAmmo();
         yield return new WaitForSeconds(shootSpeed);
         isShooting = false;
     }
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour, IDamage
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedWeap > 0)
         {
             selectedWeap--;
-            changeWeap();   
+            changeWeap();
         }
     }
 
@@ -112,6 +112,9 @@ public class PlayerController : MonoBehaviour, IDamage
         hitFanfare = WeapList[selectedWeap].HitEffect;
         destroyTime = WeapList[selectedWeap].destroyTime;
         arc = WeapList[selectedWeap].arc;
+
+        UpdateAmmo();
+
         Weapmodel.GetComponent<MeshFilter>().sharedMesh = WeapList[selectedWeap].Weapmodel.GetComponent<MeshFilter>().sharedMesh;
         Weapmodel.GetComponent<MeshRenderer>().sharedMaterial = WeapList[selectedWeap].Weapmodel.GetComponent<MeshRenderer>().sharedMaterial;
 }
@@ -200,6 +203,21 @@ public class PlayerController : MonoBehaviour, IDamage
     public void AddDamageMult(float add)
     {
         damageMult += add;
+    }
+
+    public void UpdateAmmo()
+    {
+        GameManager.instance.weaponName.text = WeapList[selectedWeap].WeaponName.ToString();
+
+        if (WeapList[selectedWeap].isAmmoInfinite)
+        {
+            GameManager.instance.ammoCurrent.text = "∞";
+            GameManager.instance.ammoMax.text = "∞";
+            return;
+        }
+
+        GameManager.instance.ammoCurrent.text = WeapList[selectedWeap].ammo.ToString();
+        GameManager.instance.ammoMax.text = WeapList[selectedWeap].ammoMax.ToString();
     }
 }
 

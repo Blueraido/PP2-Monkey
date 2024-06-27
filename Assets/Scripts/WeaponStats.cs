@@ -9,6 +9,7 @@ public class WeaponStats : ScriptableObject
 
     public GameObject Weapmodel;
 
+    public string WeaponName;
     [Range(1, 50)] public float damage;
     [Range(0.001f, 15)] public float speed;
     [Range(1, 20)] public float ProjectileSpeed;
