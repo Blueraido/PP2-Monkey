@@ -42,7 +42,7 @@ public class MeleeEnemy : EnemyAI
         fistLeftColliderOn(fistLeft);
         fistRightColliderOn(fistRight);
 
-#if true
+#if false
         fistLeftColliderOff(fistLeft);
         fistRightColliderOff(fistRight);
 #endif
