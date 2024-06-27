@@ -2531,7 +2531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8082797026002986595}
   - component: {fileID: 5016182126335119259}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Enemy MiniMap Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2752,7 +2752,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 21
+  m_Speed: 18
   m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 600
