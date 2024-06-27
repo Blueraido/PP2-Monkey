@@ -21,6 +21,11 @@ public class MixerEnemy : EnemyAI
     bool inMeleeRange;
     bool inThrowRange;
 
+    public override void Start()
+    {
+        startingPos = transform.position;
+        stoppingDistanceOrig = agent.stoppingDistance;
+    }
     protected override IEnumerator attack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, GameManager.instance.player.transform.position);

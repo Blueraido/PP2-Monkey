@@ -12,7 +12,7 @@ public class MixerEnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (mixerEnemy != null) 
+        if (mixerEnemy == null) 
             mixerEnemy = GetComponent<MixerEnemy>(); 
     }
 
