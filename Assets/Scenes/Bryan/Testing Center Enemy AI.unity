@@ -472,17 +472,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63efbc9f1e176db47a5c3758b6f4939d, type: 3}
---- !u!114 &489815097 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1789266580115898165, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-  m_PrefabInstance: {fileID: 7274263752958986380}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e97553805a5175458307dabca89ae09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &751288860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -556,50 +545,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e01448cee317f941b2f95ddb4a02339, type: 3}
---- !u!1 &864037027 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1922560407075124345, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-  m_PrefabInstance: {fileID: 7274263752958986380}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &864037029
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864037027}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.12
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &864037030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864037027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560cbdf7c09e66d4aa3760fb992de65f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixerEnemy: {fileID: 0}
-  fistLeft: {fileID: 864037029}
-  fistRight: {fileID: 0}
-  leg: {fileID: 864037029}
 --- !u!1 &889844033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,55 +992,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63efbc9f1e176db47a5c3758b6f4939d, type: 3}
---- !u!136 &1819072666 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 4818412208290270196, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-  m_PrefabInstance: {fileID: 7274263752958986380}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1946833438 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1922560407075124343, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-  m_PrefabInstance: {fileID: 7274263752958986380}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &1946833440
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946833438}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.12
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1946833441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946833438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 560cbdf7c09e66d4aa3760fb992de65f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixerEnemy: {fileID: 489815097}
-  fistLeft: {fileID: 864037029}
-  fistRight: {fileID: 1946833440}
-  leg: {fileID: 1819072666}
 --- !u!1001 &291734015110733743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1169,7 +1065,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76905113f3b548841affef5de27bbf25, type: 3}
---- !u!1001 &7274263752958986380
+--- !u!1001 &3887527154292947223
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1177,103 +1073,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1603750074254353906, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: m_Radius
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1603750074254353906, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1789266580115898165, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075126257, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: m_Name
-      value: Enemy Monkey - Mixer
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075126257, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.75
       objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.00000019326
       objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalPosition.z
       value: -11.53753
       objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalRotation.w
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0.0000033527608
       objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -360
       objectReference: {fileID: 0}
-    - target: {fileID: 1922560407075483407, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    - target: {fileID: 2087024103752595790, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2001596414044823878, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.299
-      objectReference: {fileID: 0}
-    - target: {fileID: 2001596414044823878, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.255
-      objectReference: {fileID: 0}
-    - target: {fileID: 3031448442902767904, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: fistLeft
-      value: 
-      objectReference: {fileID: 864037029}
-    - target: {fileID: 3031448442902767904, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: fistRight
-      value: 
-      objectReference: {fileID: 1946833440}
-    - target: {fileID: 4818412208290270196, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 2087024103752887728, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
+      propertyPath: m_Name
+      value: Enemy Monkey - Mixer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1922560407075124345, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 864037030}
-    - targetCorrespondingSourceObject: {fileID: 1922560407075124345, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 864037029}
-    - targetCorrespondingSourceObject: {fileID: 1922560407075124343, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1946833441}
-    - targetCorrespondingSourceObject: {fileID: 1922560407075124343, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1946833440}
-  m_SourcePrefab: {fileID: 100100000, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3aacf07c33fbedd4d8697a2c6105186a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1291,4 +1139,4 @@ SceneRoots:
   - {fileID: 115659341}
   - {fileID: 291734015110733743}
   - {fileID: 991336767}
-  - {fileID: 7274263752958986380}
+  - {fileID: 3887527154292947223}

@@ -208,7 +208,7 @@ MonoBehaviour:
   objectsToSpawn:
   - {fileID: 3514224558381805874, guid: 76905113f3b548841affef5de27bbf25, type: 3}
   - {fileID: 8752316264213676479, guid: ff55bb28d5f450f41b37f7a7d9751e62, type: 3}
-  - {fileID: 1922560407075126257, guid: cb98f9c522f89314c976ecf26d787ea9, type: 3}
+  - {fileID: 0}
   numToSpawn: 10
   spawnTimer: 1
   spawnPos:
