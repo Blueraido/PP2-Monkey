@@ -43,6 +43,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     int timesJumped;
     movementSpeed state;
     Coroutine staminaRegen;
+    WaitForSeconds regenRate = new WaitForSeconds(0.1f);
 
     enum movementSpeed
     {
@@ -79,7 +80,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         {
             rb.drag = 0;
         }
-
+        //Drains stamina while sprinting
         if (isSprinting && vertical == 1)
         {
             stamina -= 2 * Time.deltaTime;
@@ -99,9 +100,9 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         move();
     }
 
-    //Used to get keyboard input
+
     private void dirInput()
-    {
+    {    //Used to get keyboard input
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         if(isGrounded)
@@ -110,7 +111,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         }
 
         //Jump function
-        if(Input.GetButtonDown("Jump") && canJump && timesJumped < numOfJumps)
+        if (Input.GetButtonDown("Jump") && canJump && timesJumped < numOfJumps && stamina > 0)
         {
             canJump = false;
             timesJumped++;
@@ -237,7 +238,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     private bool slope()
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, height * 0.5f + 0.3f))
-        {
+        {//Used to ensure rigidbody doesn't meet resistance against angles less than the maximum walkable angle
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
         }
@@ -256,11 +257,11 @@ public class PlayerMovementC : MonoBehaviour, IDamage
             stamina += 0.2f;
             staminaCheck();
             UpdateUI();
-            yield return new WaitForSeconds(0.1f);
+            yield return regenRate;
         }
     }
     void staminaCheck()
-    {
+    {//Checks if stamina regens over maximum or under 0 to prevent having more stamina than maximum or having negative stamina
         if (stamina < 0)
         {
             stamina = 0;
@@ -272,7 +273,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
         }
     }
     void coroutineHandler()
-    {
+    {//Ensures the stamina regen coroutine starts and stosp as intended
         if (staminaRegen != null)
         {
             StopCoroutine(staminaRegen);
@@ -281,7 +282,7 @@ public class PlayerMovementC : MonoBehaviour, IDamage
     }
 
     public void AddStaminaMax(int toAdd)
-    {
+    {//Increases maximum stamina
         staminaOrig += toAdd;
         UpdateUI();
     }
