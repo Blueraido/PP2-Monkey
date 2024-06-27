@@ -12,9 +12,8 @@ public class MeleeEnemyFist : MonoBehaviour
     private void Start()
     {
         if (meleeEnemy == null)
-        {
             meleeEnemy = GetComponentInParent<MeleeEnemy>();
-        }
+        
     }
 
     public void OnTriggerEnter(Collider other)
@@ -28,12 +27,6 @@ public class MeleeEnemyFist : MonoBehaviour
 
             if (dmg != null)
                 dmg.takeDamage(damage);
-#if false
-            if (playerDamage != null &&
-                ((fistLeftActive && collision.contacts[0].thisCollider == fistLeft) ||
-                (fistRightActive && collision.contacts[0].thisCollider == fistRight)))
-                playerDamage.takeDamage(meleeDamage);
-#endif
         }
     }
 }

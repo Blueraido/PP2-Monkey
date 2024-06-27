@@ -42,29 +42,17 @@ public class MeleeEnemy : EnemyAI
         fistLeftColliderOn(fistLeft);
         fistRightColliderOn(fistRight);
 
-#if false
+#if true
         fistLeftColliderOff(fistLeft);
         fistRightColliderOff(fistRight);
 #endif
     }
-    public void fistLeftColliderOn(Collider other)
-    {
-        fistLeft.enabled = true;
-    }
+    public void fistLeftColliderOn(Collider other) { fistLeft.enabled = true; }
 
-    public void fistLeftColliderOff(Collider other)
-    {
-        fistLeft.enabled = false;
-    }
+    public void fistLeftColliderOff(Collider other) { fistLeft.enabled = false; }
 
-    public void fistRightColliderOn(Collider other)
-    {
-        fistRight.enabled = true;
-    }
+    public void fistRightColliderOn(Collider other) { fistRight.enabled = true; }
 
-    public void fistRightColliderOff(Collider other)
-    {
-        fistRight.enabled = false;
-    }
+    public void fistRightColliderOff(Collider other) { fistRight.enabled = false; }
 
 }
