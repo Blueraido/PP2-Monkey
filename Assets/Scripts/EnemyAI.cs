@@ -26,6 +26,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     protected bool isAttacking;
     protected bool playerInSightRange;
     protected bool destChosen;
+    protected bool strafe;
 
     Vector3 playerDir;
     protected Vector3 startingPos;
@@ -46,7 +47,7 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
     public virtual void Update()
     {
         float agentSpeed = agent.velocity.normalized.magnitude;
-        
+
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agentSpeed, Time.deltaTime * animTransSpeed));
 
         if (playerInSightRange && playerSighted() == true)
@@ -54,11 +55,20 @@ public abstract class EnemyAI : MonoBehaviour, IDamage
 
         else if (!playerInSightRange)
             StartCoroutine(roam());
-        
+
     }
 
     protected IEnumerator strafing()
     {
+#if false
+        Vector3 offset = Vector3.Cross(playerDir, Vector3.up);
+
+        if (strafe)
+        {
+            agent.SetDestination(transform.position + offset);
+            faceTarget();
+        }
+#endif
         yield return null;
     }
 
